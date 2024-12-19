@@ -10,33 +10,8 @@ export const useTags = () =>
     projectTypes: [
       {
         actual: "mod",
-        id: "mod",
-        display: "mod",
-      },
-      {
-        actual: "mod",
         id: "plugin",
         display: "plugin",
-      },
-      {
-        actual: "mod",
-        id: "datapack",
-        display: "data pack",
-      },
-      {
-        actual: "shader",
-        id: "shader",
-        display: "shader",
-      },
-      {
-        actual: "resourcepack",
-        id: "resourcepack",
-        display: "resource pack",
-      },
-      {
-        actual: "modpack",
-        id: "modpack",
-        display: "modpack",
       },
     ],
     loaderData: {
@@ -53,9 +28,9 @@ export const useTags = () =>
         "velocity",
         "folia",
       ],
-      dataPackLoaders: ["datapack"],
-      modLoaders: ["forge", "fabric", "quilt", "liteloader", "modloader", "rift", "neoforge"],
-      hiddenModLoaders: ["liteloader", "modloader", "rift"],
+      dataPackLoaders: [],
+      modLoaders: [],
+      hiddenModLoaders: [],
     },
     projectViewModes: ["list", "grid", "gallery"],
     approvedStatuses: ["approved", "archived", "unlisted", "private"],

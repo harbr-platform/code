@@ -298,29 +298,9 @@ const projectListLayouts = defineMessages({
     defaultMessage:
       "Select your preferred layout for each page that displays project lists on this device.",
   },
-  mod: {
-    id: "settings.display.project-list-layouts.mod",
-    defaultMessage: "Mods page",
-  },
   plugin: {
     id: "settings.display.project-list-layouts.plugin",
     defaultMessage: "Plugins page",
-  },
-  datapack: {
-    id: "settings.display.project-list-layouts.datapack",
-    defaultMessage: "Data Packs page",
-  },
-  shader: {
-    id: "settings.display.project-list-layouts.shader",
-    defaultMessage: "Shaders page",
-  },
-  resourcepack: {
-    id: "settings.display.project-list-layouts.resourcepack",
-    defaultMessage: "Resource Packs page",
-  },
-  modpack: {
-    id: "settings.display.project-list-layouts.modpack",
-    defaultMessage: "Modpacks page",
   },
   user: {
     id: "settings.display.project-list-layouts.user",

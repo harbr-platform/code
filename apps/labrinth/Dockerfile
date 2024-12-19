@@ -8,8 +8,8 @@ RUN cargo build --release
 
 FROM debian:bookworm-slim
 
-LABEL org.opencontainers.image.source=https://github.com/modrinth/code
-LABEL org.opencontainers.image.description="Modrinth API"
+LABEL org.opencontainers.image.source=https://github.com/0xnim/harbr
+LABEL org.opencontainers.image.description="Harbr API"
 LABEL org.opencontainers.image.licenses=AGPL-3.0
 
 RUN apt-get update \

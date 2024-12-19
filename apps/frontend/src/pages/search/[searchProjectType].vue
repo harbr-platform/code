@@ -4,7 +4,7 @@
     :class="{ 'alt-layout': !cosmetics.rightSearchLayout }"
   >
     <Head>
-      <Title>Search {{ projectType.display }}s - Modrinth</Title>
+      <Title>Search {{ projectType.display }}s - Harbor</Title>
     </Head>
     <aside
       :class="{
@@ -12,13 +12,13 @@
       }"
       aria-label="Filters"
     >
-      <AdPlaceholder
+      <!--<AdPlaceholder
         v-if="
           (!auth.user || !isPermission(auth.user.badges, 1 << 0) || flags.showAdsWithPlus) &&
           !server
         "
-      />
-      <section v-if="server" class="card">
+      />-->
+      <!--<section v-if="server" class="card">
         <nuxt-link
           :to="`/servers/manage/${server.serverId}/content`"
           class="mb-2 flex items-center gap-2"
@@ -44,7 +44,7 @@
           v-model="serverHideInstalled"
           label="Hide already installed"
         />
-      </section>
+      </section>-->
       <section class="card gap-1" :class="{ 'max-lg:!hidden': !sidebarMenuOpen }">
         <div class="flex items-center gap-2">
           <div class="iconified-input w-full">
@@ -939,6 +939,7 @@ function toggleFilter(filter, doNotSendRequest) {
     if (index !== -1) {
       orFacets.value.splice(index, 1);
     } else {
+      /// This is where to define FORKS of plugin loaders
       if (elementName === "categories:purpur") {
         if (!orFacets.value.includes("categories:paper")) {
           orFacets.value.push("categories:paper");
