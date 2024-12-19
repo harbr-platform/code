@@ -7,7 +7,7 @@ on:
 
 jobs:
   wait:
-    if: github.repository_owner == 'modrinth'
+    if: github.repository_owner == '0xnim'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,7 +17,7 @@ jobs:
         uses: WalshyDev/cf-pages-await@v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: '9ddae624c98677d68d93df6e524a6061'
+          accountId: '598e2b99e180734d61cc299b4c5180c1'
           project: 'frontend'
           commitHash: ${{ steps.push-changes.outputs.commit-hash }}
       - name: Purge cache
@@ -26,5 +26,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            --data '{"hosts": ["modrinth.com", "www.modrinth.com"]}' \
-            https://api.cloudflare.com/client/v4/zones/e39df17b9c4ef44cbce2646346ee6d33/purge_cache
+            --data '{"hosts": ["harbr.nimq.com"]}' \
+            https://api.cloudflare.com/client/v4/zones/bac9db702d6e52dfb380089659477bfe/purge_cache
