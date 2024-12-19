@@ -95,6 +95,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
     .map((it) => it.version);
 
   const inferFunctions = {
+    /*
     // NeoForge
     "META-INF/neoforge.mods.toml": (file) => {
       const metadata = parseTOML(file, { joiner: "\n" });
@@ -221,7 +222,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
             )
           : [],
       };
-    },
+    },*/
     // Bukkit + Other Forks
     "plugin.yml": (file) => {
       const metadata = yaml.load(file);
@@ -277,6 +278,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
         loaders: ["velocity"],
       };
     },
+    /*
     // Modpacks
     "modrinth.index.json": (file) => {
       const metadata = JSON.parse(file);
@@ -411,7 +413,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
         loaders,
         game_versions: newGameVersions,
       };
-    },
+    },*/
   };
 
   const zipReader = new JSZip();

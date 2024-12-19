@@ -8,6 +8,11 @@ The use of Modrinth branding elements, including but not limited to the wrench-i
 
 > All rights reserved. © 2020-2024 Rinth, Inc.
 
+## Harbr logo
+
+The use of Harbr branding elements, including but not limited to the logo, and any variations thereof, is strictly prohibited without explicit written permission. This includes logos, or other branding elements.
+
+
 This includes, but may not be limited to, the following files:
 
 - assets/images/404.svg
