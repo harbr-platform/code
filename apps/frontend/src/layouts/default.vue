@@ -125,7 +125,6 @@
           </ButtonStyled>
         </template>
         <template v-else>
-
           <ButtonStyled type="transparent" :highlighted="route.name === 'plugins'">
             <nuxt-link to="/plugins">
               <CompassIcon aria-hidden="true" />
@@ -512,7 +511,7 @@ import { getProjectTypeMessage } from "~/utils/i18n-project-type.ts";
 import { commonMessages } from "~/utils/common-messages.ts";
 import CollectionCreateModal from "~/components/ui/CollectionCreateModal.vue";
 import OrganizationCreateModal from "~/components/ui/OrganizationCreateModal.vue";
-import TeleportOverflowMenu from "~/components/ui/servers/TeleportOverflowMenu.vue";
+/* import TeleportOverflowMenu from "~/components/ui/servers/TeleportOverflowMenu.vue"; */
 
 const { formatMessage } = useVIntl();
 
@@ -820,9 +819,9 @@ const userMenuOptions = computed(() => {
   return options;
 });
 
-const isDiscovering = computed(() => route.name && route.name.startsWith("search-"));
+/* const isDiscovering = computed(() => route.name && route.name.startsWith("search-")); */
 
-const isDiscoveringSubpage = computed(() => route.name && route.name.startsWith("type-id"));
+/* const isDiscoveringSubpage = computed(() => route.name && route.name.startsWith("type-id")); */
 
 onMounted(() => {
   if (window && import.meta.client) {

@@ -1,7 +1,7 @@
-import { parse as parseTOML } from "@ltd/j-toml";
+/* import { parse as parseTOML } from "@ltd/j-toml"; */
 import JSZip from "jszip";
 import yaml from "js-yaml";
-import { satisfies } from "semver";
+/* import { satisfies } from "semver"; */
 
 export const inferVersionInfo = async function (rawFile, project, gameVersions) {
   function versionType(number) {
@@ -17,7 +17,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
       return "release";
     }
   }
-
+  /*
   function getGameVersionsMatchingSemverRange(range, gameVersions) {
     if (!range) {
       return [];
@@ -28,7 +28,9 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
       return ranges.some((v) => satisfies(semverVersion, v));
     });
   }
+  */
 
+  /*
   function getGameVersionsMatchingMavenRange(range, gameVersions) {
     if (!range) {
       return [];
@@ -89,11 +91,12 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
     }
     return getGameVersionsMatchingSemverRange(semverRanges, gameVersions);
   }
-
+  */
+  /*
   const simplifiedGameVersions = gameVersions
     .filter((it) => it.version_type === "release")
     .map((it) => it.version);
-
+  */
   const inferFunctions = {
     /*
     // NeoForge
@@ -222,7 +225,8 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
             )
           : [],
       };
-    },*/
+    },
+    */
     // Bukkit + Other Forks
     "plugin.yml": (file) => {
       const metadata = yaml.load(file);
@@ -413,7 +417,8 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
         loaders,
         game_versions: newGameVersions,
       };
-    },*/
+    },
+    */
   };
 
   const zipReader = new JSZip();

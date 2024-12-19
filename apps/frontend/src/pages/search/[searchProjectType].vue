@@ -308,7 +308,7 @@
 </template>
 <script setup>
 import { Multiselect } from "vue-multiselect";
-import { Pagination, ScrollablePanel, Checkbox, Avatar } from "@modrinth/ui";
+import { Pagination, ScrollablePanel, Checkbox /*, Avatar */ } from "@modrinth/ui";
 import { BanIcon, DropdownIcon, CheckIcon, FilterXIcon, DownloadIcon } from "@modrinth/assets";
 import ProjectCard from "~/components/ui/ProjectCard.vue";
 import LogoAnimated from "~/components/brand/LogoAnimated.vue";
@@ -322,7 +322,7 @@ import GridIcon from "~/assets/images/utils/grid.svg?component";
 import ListIcon from "~/assets/images/utils/list.svg?component";
 import ImageIcon from "~/assets/images/utils/image.svg?component";
 import Accordion from "~/components/ui/Accordion.vue";
-import AdPlaceholder from "~/components/ui/AdPlaceholder.vue";
+/* import AdPlaceholder from "~/components/ui/AdPlaceholder.vue"; */
 
 const sidebarMenuOpen = ref(false);
 const showAllLoaders = ref(false);
@@ -334,8 +334,8 @@ const route = useNativeRoute();
 
 const cosmetics = useCosmetics();
 const tags = useTags();
-const flags = useFeatureFlags();
-const auth = await useAuth();
+/* const flags = useFeatureFlags(); */
+/* const auth = await useAuth(); */
 
 const query = ref("");
 const facets = ref([]);
