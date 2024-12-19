@@ -7,7 +7,7 @@ on:
 
 jobs:
   wait:
-    if: github.repository_owner == '0xnim'
+    if: github.repository_owner == 'harbr-platform'
     runs-on: ubuntu-latest
     permissions:
       contents: read
