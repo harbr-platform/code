@@ -52,7 +52,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en",
       },
-      title: "abcde4",
+      title: "Harbr",
       link: [
         // The type is necessary because the linter can't always compare this very nested/complex type on itself
         ...preloadedFonts.map((font): object => {
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
           rel: "search",
           type: "application/opensearchdescription+xml",
           href: "/opensearch.xml",
-          title: "Harbor plugins",
+          title: "Harbr plugins",
         },
       ],
     },
