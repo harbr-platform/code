@@ -18,7 +18,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: '598e2b99e180734d61cc299b4c5180c1'
-          project: 'frontend'
+          project: 'frontend-a6q'
           commitHash: ${{ steps.push-changes.outputs.commit-hash }}
       - name: Purge cache
         if: github.ref == 'refs/heads/prod'
