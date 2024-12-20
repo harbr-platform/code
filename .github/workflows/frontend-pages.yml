@@ -26,5 +26,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            --data '{"hosts": ["harbr.nimq.com"]}' \
-            https://api.cloudflare.com/client/v4/zones/bac9db702d6e52dfb380089659477bfe/purge_cache
+            --data '{"hosts": ["harbr.dev"]}' \
+            https://api.cloudflare.com/client/v4/zones/f2861b5013932cb5ec289a5a07fac44e/purge_cache
