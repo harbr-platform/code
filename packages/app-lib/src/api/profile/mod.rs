@@ -760,7 +760,7 @@ pub async fn try_update_playtime(path: &str) -> crate::Result<()> {
         }
 
         fetch::post_json(
-            "https://api.modrinth.com/analytics/playtime",
+            "https://api.harbr.dev/analytics/playtime",
             serde_json::to_value(hashmap)?,
             &state.api_semaphore,
             &state.pool,

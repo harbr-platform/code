@@ -140,7 +140,7 @@ impl TestFile {
                         "server": "required"
                     },
                     "downloads": [
-                        "https://cdn.modrinth.com/data/PRN43VSY/versions/uNgEPb10/animatica-0.6%2B1.20.jar"
+                        "https://cdn.harbr.dev/data/PRN43VSY/versions/uNgEPb10/animatica-0.6%2B1.20.jar"
                     ],
                     "fileSize": 69810
                 }

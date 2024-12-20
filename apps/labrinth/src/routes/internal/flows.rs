@@ -1048,7 +1048,7 @@ pub struct Authorization {
 }
 
 // Init link takes us to GitHub API and calls back to callback endpoint with a code and state
-// http://localhost:8000/auth/init?url=https://modrinth.com
+// http://localhost:8000/auth/init?url=https://harbr.dev
 #[get("init")]
 pub async fn init(
     req: HttpRequest,
@@ -1064,7 +1064,7 @@ pub async fn init(
         parse_strings_from_var("ALLOWED_CALLBACK_URLS").unwrap_or_default();
     let domain = url.host_str().ok_or(AuthenticationError::Url)?;
     if !allowed_callback_urls.iter().any(|x| domain.ends_with(x))
-        && domain != "modrinth.com"
+        && domain != "harbr.dev"
     {
         return Err(AuthenticationError::Url);
     }

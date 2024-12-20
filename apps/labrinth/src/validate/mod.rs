@@ -4,35 +4,35 @@ use crate::database::models::DatabaseError;
 use crate::database::redis::RedisPool;
 use crate::models::pack::PackFormat;
 use crate::models::projects::{FileType, Loader};
-use crate::validate::datapack::DataPackValidator;
-use crate::validate::fabric::FabricValidator;
-use crate::validate::forge::{ForgeValidator, LegacyForgeValidator};
-use crate::validate::liteloader::LiteLoaderValidator;
-use crate::validate::modpack::ModpackValidator;
-use crate::validate::neoforge::NeoForgeValidator;
+//use crate::validate::datapack::DataPackValidator;
+//use crate::validate::fabric::FabricValidator;
+//use crate::validate::forge::{ForgeValidator, LegacyForgeValidator};
+//use crate::validate::liteloader::LiteLoaderValidator;
+//use crate::validate::modpack::ModpackValidator;
+//use crate::validate::neoforge::NeoForgeValidator;
 use crate::validate::plugin::*;
-use crate::validate::quilt::QuiltValidator;
-use crate::validate::resourcepack::{PackValidator, TexturePackValidator};
-use crate::validate::rift::RiftValidator;
-use crate::validate::shader::{
-    CanvasShaderValidator, CoreShaderValidator, ShaderValidator,
-};
+//use crate::validate::quilt::QuiltValidator;
+//use crate::validate::resourcepack::{PackValidator, TexturePackValidator};
+//use crate::validate::rift::RiftValidator;
+//use crate::validate::shader::{
+//    CanvasShaderValidator, CoreShaderValidator, ShaderValidator,
+//};
 use chrono::{DateTime, Utc};
 use std::io::Cursor;
 use thiserror::Error;
 use zip::ZipArchive;
 
-mod datapack;
-mod fabric;
-mod forge;
-mod liteloader;
-mod modpack;
-mod neoforge;
+//mod datapack;
+//mod fabric;
+//mod forge;
+//mod liteloader;
+//mod modpack;
+//mod neoforge;
 pub mod plugin;
-mod quilt;
-mod resourcepack;
-mod rift;
-mod shader;
+//mod quilt;
+//mod resourcepack;
+//mod rift;
+//mod shader;
 
 #[derive(Error, Debug)]
 pub enum ValidationError {
@@ -87,31 +87,41 @@ pub trait Validator: Sync {
     fn get_supported_game_versions(&self) -> SupportedGameVersions;
     fn validate(
         &self,
-        archive: &mut ZipArchive<Cursor<bytes::Bytes>>,
+        input: FileInput,
     ) -> Result<ValidationResult, ValidationError>;
+}
+
+#[derive(Clone)]
+pub enum FileInput {
+    Archive(ZipArchive<Cursor<bytes::Bytes>>),
+    Wasm(bytes::Bytes),
+    RawFile(bytes::Bytes),
 }
 
 static ALWAYS_ALLOWED_EXT: &[&str] = &["zip", "txt"];
 
 static VALIDATORS: &[&dyn Validator] = &[
-    &ModpackValidator,
-    &FabricValidator,
-    &ForgeValidator,
-    &LegacyForgeValidator,
-    &QuiltValidator,
-    &LiteLoaderValidator,
-    &PackValidator,
-    &TexturePackValidator,
+    //&ModpackValidator,
+    //&FabricValidator,
+    //&ForgeValidator,
+    //&LegacyForgeValidator,
+    //&QuiltValidator,
+    //&LiteLoaderValidator,
+    //&PackValidator,
+    //&TexturePackValidator,
     &PluginYmlValidator,
     &BungeeCordValidator,
     &VelocityValidator,
     &SpongeValidator,
-    &CanvasShaderValidator,
-    &ShaderValidator,
-    &CoreShaderValidator,
-    &DataPackValidator,
-    &RiftValidator,
-    &NeoForgeValidator,
+    // #------ NEW VALIDATORS -------#
+    &PumpkinValidator,
+    // #-----------------------------#
+    //&CanvasShaderValidator,
+    //&ShaderValidator,
+    //&CoreShaderValidator,
+    //&DataPackValidator,
+    //&RiftValidator,
+    //&NeoForgeValidator,
 ];
 
 /// The return value is whether this file should be marked as primary or not, based on the analysis of the file
@@ -153,17 +163,11 @@ async fn validate_minecraft_file(
     file_type: Option<FileType>,
 ) -> Result<ValidationResult, ValidationError> {
     actix_web::web::block(move || {
-        let reader = Cursor::new(data);
-        let mut zip = ZipArchive::new(reader)?;
-
-        if let Some(file_type) = file_type {
-            match file_type {
-                FileType::RequiredResourcePack | FileType::OptionalResourcePack => {
-                    return PackValidator.validate(&mut zip);
-                }
-                FileType::Unknown => {}
-            }
-        }
+        let file_input = match file_extension.as_str() {
+            "zip" => FileInput::Archive(ZipArchive::new(Cursor::new(data))?),
+            "wasm" => FileInput::Wasm(data),
+            _ => FileInput::RawFile(data),
+        };
 
         let mut visited = false;
         let mut saved_result = None;
@@ -178,7 +182,7 @@ async fn validate_minecraft_file(
                 )
             {
                 if validator.get_file_extensions().contains(&&*file_extension) {
-                    let result = validator.validate(&mut zip)?;
+                    let result = validator.validate(file_input.clone()).map_err(|e| { ValidationError::from(e) })?;
                     match result {
                         ValidationResult::PassWithPackDataAndFiles { .. } => {
                             saved_result = Some(result);

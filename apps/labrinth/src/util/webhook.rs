@@ -464,7 +464,7 @@ pub async fn send_discord_webhook(
             .post(&webhook_url)
             .json(&DiscordWebhook {
                 avatar_url: Some(
-                    "https://cdn.modrinth.com/Modrinth_Dark_Logo.png"
+                    "https://cdn.harbr.dev/Modrinth_Dark_Logo.png"
                         .to_string(),
                 ),
                 username: Some("Modrinth Release".to_string()),

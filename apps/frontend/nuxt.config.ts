@@ -213,7 +213,7 @@ export default defineNuxtConfig({
     async "vintl:extendOptions"(opts) {
       opts.locales ??= [];
 
-      const isProduction = getDomain() === "https://modrinth.com";
+      const isProduction = getDomain() === "https://harbr.com";
 
       const resolveCompactNumberDataImport = await (async () => {
         const compactNumberLocales: string[] = [];
@@ -456,9 +456,9 @@ function getDomain() {
     } else if (process.env.VERCEL_URL) {
       return `https://${process.env.VERCEL_URL}`;
     } else if (getApiUrl() === STAGING_API_URL) {
-      return "https://staging.modrinth.com";
+      return "https://staging.harbr.dev";
     } else {
-      return "https://modrinth.com";
+      return "https://harbr.dev";
     }
   } else {
     const port = process.env.PORT || 3000;

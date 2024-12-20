@@ -71,8 +71,8 @@ pub async fn page_view_ingest(
 
     let allowed_origins =
         parse_strings_from_var("CORS_ALLOWED_ORIGINS").unwrap_or_default();
-    if !(domain.ends_with(".modrinth.com")
-        || domain == "modrinth.com"
+    if !(domain.ends_with(".harbr.dev")
+        || domain == "harbr.dev"
         || allowed_origins.contains(&"*".to_string()))
     {
         return Err(ApiError::InvalidInput(

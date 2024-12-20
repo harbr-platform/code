@@ -180,7 +180,7 @@ impl ModerationMessage {
                         };
 
                         val.push_str(&if let Some(additional_text) = additional_text {
-                            format!("- {project}(consider using [{additional_text}](https://modrinth.com/mod/{}) instead)\n", additional_text.to_lowercase())
+                            format!("- {project}(consider using [{additional_text}](https://harbr.dev/mod/{}) instead)\n", additional_text.to_lowercase())
                         } else {
                             format!("- {project}\n")
                         })

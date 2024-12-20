@@ -86,8 +86,8 @@ pub async fn fetch_advanced(
         .as_ref()
         .map(|x| &*x.0.to_lowercase() == "authorization")
         .unwrap_or(false)
-        && (url.starts_with("https://cdn.modrinth.com")
-            || url.starts_with("https://api.modrinth.com"))
+        && (url.starts_with("https://cdn.harbr.dev")
+            || url.starts_with("https://api.harbr.dev"))
     {
         crate::state::ModrinthCredentials::get_active(exec).await?
     } else {
