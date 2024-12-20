@@ -34,25 +34,32 @@
           <SSOGitHubIcon />
           <span>GitHub</span>
         </a>
+        <!--
         <a class="btn" :href="getAuthUrl('microsoft', redirectTarget)">
           <SSOMicrosoftIcon />
           <span>Microsoft</span>
-        </a>
+        </a> -->
+        <!--
         <a class="btn" :href="getAuthUrl('google', redirectTarget)">
           <SSOGoogleIcon />
           <span>Google</span>
         </a>
+        -->
+        <!--
         <a class="btn" :href="getAuthUrl('steam', redirectTarget)">
           <SSOSteamIcon />
           <span>Steam</span>
-        </a>
+        </a> -->
+        <!--
         <a class="btn" :href="getAuthUrl('gitlab', redirectTarget)">
           <SSOGitLabIcon />
           <span>GitLab</span>
         </a>
+        -->
       </section>
-
+      <!--
       <h1>{{ formatMessage(messages.usePasswordLabel) }}</h1>
+
 
       <section class="auth-form">
         <div class="iconified-input">
@@ -117,7 +124,7 @@
             </template>
           </IntlFormatted>
         </div>
-      </section>
+      </section> -->
     </template>
   </div>
 </template>
