@@ -159,7 +159,6 @@
         </ButtonStyled>
       </div>
     </header>
-    <!--
     <header class="mobile-navigation mobile-only">
       <div
         class="nav-menu nav-menu-browse"
@@ -320,7 +319,6 @@
         </button>
       </div>
     </header>
-    -->
     <main>
       <ModalCreation v-if="auth.user" ref="modal_creation" />
       <CollectionCreateModal ref="modal_collection_creation" />
@@ -328,7 +326,7 @@
       <slot id="main" />
     </main>
     <footer>
-      <div class="logo-info" role="region" aria-label="Modrinth information">
+      <div class="logo-info" role="region" aria-label="Harbr information">
         <BrandTextLogo
           aria-hidden="true"
           class="text-logo button-base mx-auto mb-4 lg:mx-0"
@@ -339,7 +337,7 @@
             <template #github-link="{ children }">
               <a
                 :target="$external()"
-                href="https://github.com/modrinth"
+                href="https://github.com/harbr-platform"
                 class="text-link"
                 rel="noopener"
               >
@@ -364,26 +362,26 @@
             >{{ config.public.hash.substring(0, 7) }}</a
           >
         </p>
-        <p>© Rinth, Inc.</p>
+        <p>© 2024. All rights reserved.</p>
       </div>
       <div class="links links-1" role="region" aria-label="Legal">
         <h4 aria-hidden="true">{{ formatMessage(footerMessages.companyTitle) }}</h4>
         <nuxt-link to="/legal/terms"> {{ formatMessage(footerMessages.terms) }}</nuxt-link>
         <nuxt-link to="/legal/privacy"> {{ formatMessage(footerMessages.privacy) }}</nuxt-link>
         <nuxt-link to="/legal/rules"> {{ formatMessage(footerMessages.rules) }}</nuxt-link>
-        <a :target="$external()" href="https://careers.modrinth.com">
+        <!--<a :target="$external()" href="https://careers.modrinth.com">
           {{ formatMessage(footerMessages.careers) }}
           <span v-if="false" class="count-bubble">0</span>
-        </a>
+        </a>-->
       </div>
       <div class="links links-2" role="region" aria-label="Resources">
         <h4 aria-hidden="true">{{ formatMessage(footerMessages.resourcesTitle) }}</h4>
-        <a :target="$external()" href="https://support.modrinth.com">
+        <!--<a :target="$external()" href="https://support.modrinth.com">
           {{ formatMessage(footerMessages.support) }}
-        </a>
-        <a :target="$external()" href="https://blog.modrinth.com">
+        </a>-->
+        <!--<a :target="$external()" href="https://blog.modrinth.com">
           {{ formatMessage(footerMessages.blog) }}
-        </a>
+        </a>-->
         <a :target="$external()" href="https://docs.modrinth.com">
           {{ formatMessage(footerMessages.docs) }}
         </a>
@@ -393,18 +391,18 @@
       </div>
       <div class="links links-3" role="region" aria-label="Interact">
         <h4 aria-hidden="true">{{ formatMessage(footerMessages.interactTitle) }}</h4>
-        <a rel="noopener" :target="$external()" href="https://discord.modrinth.com"> Discord </a>
-        <a rel="noopener" :target="$external()" href="https://x.com/modrinth"> X (Twitter) </a>
-        <a rel="noopener" :target="$external()" href="https://floss.social/@modrinth"> Mastodon </a>
+        <a rel="noopener" :target="$external()" href="https://discord.gg/6sDhw9ncH5"> Discord </a>
+        <!--<a rel="noopener" :target="$external()" href="https://x.com/modrinth"> X (Twitter) </a>-->
+        <!--<a rel="noopener" :target="$external()" href="https://floss.social/@modrinth"> Mastodon </a>-->
         <a rel="noopener" :target="$external()" href="https://crowdin.com/project/modrinth">
           Crowdin
         </a>
       </div>
       <div class="buttons">
-        <nuxt-link class="btn btn-outline btn-primary" to="/app">
+        <!--<nuxt-link class="btn btn-outline btn-primary" to="/app">
           <DownloadIcon aria-hidden="true" />
           {{ formatMessage(messages.getModrinthApp) }}
-        </nuxt-link>
+        </nuxt-link>-->
         <button class="iconified-button raised-button" @click="changeTheme">
           <MoonIcon v-if="$theme.active === 'light'" aria-hidden="true" />
           <SunIcon v-else aria-hidden="true" />
@@ -483,7 +481,7 @@ const link = config.public.siteUrl + route.path.replace(/\/+$/, "");
 const verifyEmailBannerMessages = defineMessages({
   title: {
     id: "layout.banner.verify-email.title",
-    defaultMessage: "For security purposes, please verify your email address on Modrinth.",
+    defaultMessage: "For security purposes, please verify your email address on Harbr.",
   },
   action: {
     id: "layout.banner.verify-email.action",
@@ -494,7 +492,7 @@ const verifyEmailBannerMessages = defineMessages({
 const addEmailBannerMessages = defineMessages({
   title: {
     id: "layout.banner.add-email.title",
-    defaultMessage: "For security purposes, please enter your email on Modrinth.",
+    defaultMessage: "For security purposes, please enter your email on Harbr.",
   },
   action: {
     id: "layout.banner.add-email.button",
@@ -517,12 +515,12 @@ const subscriptionPaymentFailedBannerMessages = defineMessages({
 const stagingBannerMessages = defineMessages({
   title: {
     id: "layout.banner.staging.title",
-    defaultMessage: "You’re viewing Modrinth’s staging environment.",
+    defaultMessage: "You’re viewing Harbr’s staging environment.",
   },
   description: {
     id: "layout.banner.staging.description",
     defaultMessage:
-      "The staging environment is completely separate from the production Modrinth database. This is used for testing and debugging purposes, and may be running in-development versions of the Modrinth backend or frontend newer than the production instance.",
+      "The staging environment is completely separate from the production Harbr database. This is used for testing and debugging purposes, and may be running in-development versions of the Modrinth backend or frontend newer than the production instance.",
   },
 });
 
@@ -559,7 +557,7 @@ const messages = defineMessages({
 const footerMessages = defineMessages({
   openSource: {
     id: "layout.footer.open-source",
-    defaultMessage: "Modrinth is <github-link>open source</github-link>.",
+    defaultMessage: "Harbr is <github-link>open source</github-link>.",
   },
   companyTitle: {
     id: "layout.footer.company.title",
@@ -621,28 +619,28 @@ useHead({
   ],
 });
 useSeoMeta({
-  title: "Modrinth",
+  title: "Harbr",
   description: () =>
     formatMessage({
       id: "layout.meta.description",
       defaultMessage:
-        "Download Minecraft mods, plugins, datapacks, shaders, resourcepacks, and modpacks on Modrinth. " +
-        "Discover and publish projects on Modrinth with a modern, easy to use interface and API.",
+        "Download Minecraft plugins from spigot, paper, purpur, bukkit, and more on Harbr. " +
+        "Discover and publish projects on Harbr with a modern, easy to use interface and API.",
     }),
-  publisher: "Modrinth",
+  publisher: "Harbr",
   themeColor: "#1bd96a",
   colorScheme: "dark light",
 
   // OpenGraph
-  ogTitle: "Modrinth",
-  ogSiteName: "Modrinth",
+  ogTitle: "Harbr",
+  ogSiteName: "Harbr",
   ogDescription: () =>
     formatMessage({
       id: "layout.meta.og-description",
       defaultMessage: "Discover and publish Minecraft content!",
     }),
   ogType: "website",
-  ogImage: "https://cdn.modrinth.com/modrinth-new.png",
+  ogImage: "https://cdn.harbr.dev/harbr-new.png",
   ogUrl: link,
 
   // Twitter

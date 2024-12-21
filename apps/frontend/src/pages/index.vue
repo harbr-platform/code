@@ -64,18 +64,17 @@
       <div class="projects-transition" />
       <div class="users-section">
         <div class="section-header">
-          <div class="section-label green">For Players</div>
-          <h2 class="section-tagline">Discover over 10,000 creations</h2>
+          <div class="section-label green">For Server Owners</div>
+          <h2 class="section-tagline">Discover a huge variety of plugins</h2>
           <p class="section-description">
-            From magical biomes to cursed dungeons, you can be sure to find content to bring your
-            gameplay to the next level.
+            Find a wide variety of plugins to help you build your server. Harbr is the best place to find plugins for your server.
           </p>
         </div>
         <div class="feature-blob">
           <div class="blob-text">
             <h3>Find what you want, quickly and easily</h3>
             <p>
-              Modrinth's lightning-fast search and powerful filters let you find what you want as
+              Harbr's lightning-fast search and powerful filters let you find what you want as
               you type.
             </p>
           </div>
@@ -139,8 +138,8 @@
         </div>
         <div class="feature-blob reverse">
           <div class="blob-text">
-            <h3>Follow projects you love</h3>
-            <p>Get notified every time your favorite projects update and stay in the loop</p>
+            <h3>Follow projects you use</h3>
+            <p>Get notified every time your favorite plugins update and stay in the loop</p>
           </div>
           <div class="blob-demonstration gradient-border">
             <div class="notifs-demo">
@@ -188,64 +187,14 @@
             </div>
           </div>
         </div>
-        <div class="feature-blob">
-          <div class="blob-text">
-            <h3>Play with your favorite launcher</h3>
-            <p>
-              Modrinth's open-source API lets launchers add deep integration with Modrinth. You can
-              use Modrinth through
-              <nuxt-link class="title-link" to="/app">our own app</nuxt-link> and some of the most
-              popular launchers like ATLauncher, MultiMC, and Prism Launcher.
-            </p>
-          </div>
-          <div class="blob-demonstration gradient-border">
-            <div class="launcher-view">
-              <img
-                v-if="$theme.active === 'light'"
-                src="https://cdn.modrinth.com/landing-new/launcher-light.webp"
-                alt="launcher graphic"
-                class="minecraft-screen"
-              />
-              <img
-                v-else
-                src="https://cdn.modrinth.com/landing-new/launcher.webp"
-                alt="launcher graphic"
-                class="minecraft-screen"
-              />
-              <div class="launcher-graphics">
-                <a
-                  rel="noopener"
-                  href="https://prismlauncher.org/"
-                  class="graphic gradient-border"
-                  title="Prism Launcher"
-                  aria-label="Prism Launcher"
-                >
-                  <PrismLauncherLogo aria-hidden="true" />
-                </a>
-                <nuxt-link to="/app" class="graphic gradient-border" aria-label="Modrinth App">
-                  <ModrinthIcon aria-hidden="true" />
-                </nuxt-link>
-                <a
-                  rel="noopener"
-                  href="https://atlauncher.com/"
-                  class="graphic gradient-border"
-                  title="ATLauncher"
-                  aria-label="ATLauncher"
-                >
-                  <ATLauncherLogo aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="creator-section">
       <div class="section-header">
         <div class="section-label blue">For Creators</div>
-        <h2 class="section-tagline">Share your content with the world</h2>
+        <h2 class="section-tagline">Share your plugins with the world</h2>
         <p class="section-description">
-          Give an online home to your creations and reach a massive audience of dedicated players
+          Give an online home to your creations and reach a massive audience of server owners
         </p>
       </div>
       <div class="features">
@@ -273,7 +222,7 @@
           </div>
           <h3>Discovery</h3>
           <p>
-            Get your project discovered by thousands of users through search, our home page, Discord
+            Get your project discovered by thousands of server owners through search, our home page, Discord
             server, and more ways to come in the future!
           </p>
         </div>
@@ -302,7 +251,7 @@
           <h3>Team Management</h3>
           <p>Invite your teammates and manage roles and permissions with ease</p>
         </div>
-        <div class="feature gradient-border">
+        <!--<div class="feature gradient-border">
           <div class="icon gradient-border">
             <svg viewBox="0 0 42 30" fill="none">
               <path
@@ -326,8 +275,8 @@
           </div>
           <h3>Monetization</h3>
           <p>Get paid ad revenue from your project pages and withdraw your funds at any time</p>
-        </div>
-        <div class="feature gradient-border">
+        </div>-->
+        <!--<div class="feature gradient-border">
           <div class="icon gradient-border">
             <svg viewBox="0 0 42 39" fill="none">
               <path
@@ -354,7 +303,7 @@
             Integrate with your build tools through Minotaur for automatic uploads right when you
             release a new version
           </p>
-        </div>
+        </div>-->
         <div class="feature gradient-border">
           <div class="icon gradient-border">
             <svg viewBox="0 0 39 39" fill="none">
@@ -380,7 +329,7 @@
           <h3>Data and Statistics</h3>
           <p>Get detailed reports on page views, download counts, and revenue</p>
         </div>
-        <div class="feature gradient-border">
+        <!--<div class="feature gradient-border">
           <div class="icon gradient-border">
             <svg viewBox="0 0 42 32" fill="none">
               <path
@@ -406,10 +355,10 @@
           <p>
             Get the best modding experience possible with constant updates from the Modrinth team
           </p>
-        </div>
+        </div>-->
       </div>
     </div>
-    <div class="logo-banner">
+    <!--<div class="logo-banner">
       <svg
         v-if="$theme.active === 'light'"
         viewBox="0 0 865 512"
@@ -512,7 +461,7 @@
           </a>
         </ButtonStyled>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script setup>
