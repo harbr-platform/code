@@ -57,7 +57,7 @@
       class="experimental-styles-within desktop-only relative z-[5] mx-auto grid max-w-[1280px] grid-cols-[1fr_auto] items-center gap-2 px-3 py-4 lg:grid-cols-[auto_1fr_auto]"
     >
       <div>
-        <NuxtLink to="/" aria-label="Modrinth home page">
+        <NuxtLink to="/" aria-label="Harbr home page">
           <BrandTextLogo aria-hidden="true" class="h-7 w-auto text-contrast" />
         </NuxtLink>
       </div>

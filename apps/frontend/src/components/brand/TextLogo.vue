@@ -60,9 +60,9 @@ const config = useRuntimeConfig();
 
 const api = computed(() => {
   const apiUrl = config.public.apiBaseUrl;
-  if (apiUrl.startsWith("https://api.modrinth.com")) {
+  if (apiUrl.startsWith("https://api.harbr.dev")) {
     return "prod";
-  } else if (apiUrl.startsWith("https://staging-api.modrinth.com")) {
+  } else if (apiUrl.startsWith("https://staging-api.harbr.dev")) {
     return "staging";
   } else if (apiUrl.startsWith("localhost") || apiUrl.startsWith("127.0.0.1")) {
     return "localhost";
