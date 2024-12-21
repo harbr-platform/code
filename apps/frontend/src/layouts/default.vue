@@ -67,55 +67,6 @@
         <template v-if="flags.projectTypesPrimaryNav">
           <ButtonStyled
             type="transparent"
-            :highlighted="route.name === 'search-mods' || route.path.startsWith('/mod/')"
-            :highlighted-style="
-              route.name === 'search-mods' ? 'main-nav-primary' : 'main-nav-secondary'
-            "
-          >
-            <nuxt-link to="/mods"> <BoxIcon aria-hidden="true" /> Mods </nuxt-link>
-          </ButtonStyled>
-          <ButtonStyled
-            type="transparent"
-            :highlighted="
-              route.name === 'search-resourcepacks' || route.path.startsWith('/resourcepack/')
-            "
-            :highlighted-style="
-              route.name === 'search-resourcepacks' ? 'main-nav-primary' : 'main-nav-secondary'
-            "
-          >
-            <nuxt-link to="/resourcepacks">
-              <PaintBrushIcon aria-hidden="true" /> Resource Packs
-            </nuxt-link>
-          </ButtonStyled>
-          <ButtonStyled
-            type="transparent"
-            :highlighted="route.name === 'search-datapacks' || route.path.startsWith('/datapack/')"
-            :highlighted-style="
-              route.name === 'search-datapacks' ? 'main-nav-primary' : 'main-nav-secondary'
-            "
-          >
-            <nuxt-link to="/datapacks"> <BracesIcon aria-hidden="true" /> Data Packs </nuxt-link>
-          </ButtonStyled>
-          <ButtonStyled
-            type="transparent"
-            :highlighted="route.name === 'search-modpacks' || route.path.startsWith('/modpack/')"
-            :highlighted-style="
-              route.name === 'search-modpacks' ? 'main-nav-primary' : 'main-nav-secondary'
-            "
-          >
-            <nuxt-link to="/modpacks"> <PackageOpenIcon aria-hidden="true" /> Modpacks </nuxt-link>
-          </ButtonStyled>
-          <ButtonStyled
-            type="transparent"
-            :highlighted="route.name === 'search-shaders' || route.path.startsWith('/shader/')"
-            :highlighted-style="
-              route.name === 'search-shaders' ? 'main-nav-primary' : 'main-nav-secondary'
-            "
-          >
-            <nuxt-link to="/shaders"> <GlassesIcon aria-hidden="true" /> Shaders </nuxt-link>
-          </ButtonStyled>
-          <ButtonStyled
-            type="transparent"
             :highlighted="route.name === 'search-plugins' || route.path.startsWith('/plugin/')"
             :highlighted-style="
               route.name === 'search-plugins' ? 'main-nav-primary' : 'main-nav-secondary'
@@ -702,29 +653,8 @@ const isMobileMenuOpen = ref(false);
 const isBrowseMenuOpen = ref(false);
 const navRoutes = computed(() => [
   {
-    id: "mods",
-    label: formatMessage(getProjectTypeMessage("mod", true)),
-    href: "/mods",
-  },
-  {
     label: formatMessage(getProjectTypeMessage("plugin", true)),
     href: "/plugins",
-  },
-  {
-    label: formatMessage(getProjectTypeMessage("datapack", true)),
-    href: "/datapacks",
-  },
-  {
-    label: formatMessage(getProjectTypeMessage("shader", true)),
-    href: "/shaders",
-  },
-  {
-    label: formatMessage(getProjectTypeMessage("resourcepack", true)),
-    href: "/resourcepacks",
-  },
-  {
-    label: formatMessage(getProjectTypeMessage("modpack", true)),
-    href: "/modpacks",
   },
 ]);
 
