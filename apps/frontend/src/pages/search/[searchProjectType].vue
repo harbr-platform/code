@@ -4,7 +4,7 @@
     :class="{ 'alt-layout': !cosmetics.rightSearchLayout }"
   >
     <Head>
-      <Title>Search {{ projectType.display }}s - Harbor</Title>
+      <Title>Search {{ projectType.display }}s - Harbr</Title>
     </Head>
     <aside
       :class="{
