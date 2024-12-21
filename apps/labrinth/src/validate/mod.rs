@@ -164,7 +164,7 @@ async fn validate_minecraft_file(
 ) -> Result<ValidationResult, ValidationError> {
     actix_web::web::block(move || {
         let file_input = match file_extension.as_str() {
-            "zip" => FileInput::Archive(ZipArchive::new(Cursor::new(data))?),
+            "zip" | "jar" => FileInput::Archive(ZipArchive::new(Cursor::new(data))?),
             "wasm" => FileInput::Wasm(data),
             _ => FileInput::RawFile(data),
         };
