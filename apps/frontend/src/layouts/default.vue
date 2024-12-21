@@ -76,7 +76,13 @@
           </ButtonStyled>
         </template>
         <template v-else>
-          <ButtonStyled type="transparent" :highlighted="route.name === 'plugins'">
+          <ButtonStyled
+              type="transparent"
+              :highlighted="route.name === 'plugins'"
+              :highlighted-style="
+              route.name === 'plugins' ? 'main-nav-primary' : 'main-nav-secondary'
+            "
+          >
             <nuxt-link to="/plugins">
               <CompassIcon aria-hidden="true" />
               <span class="hidden md:contents">Discover Plugins</span>
@@ -153,6 +159,7 @@
         </ButtonStyled>
       </div>
     </header>
+    <!--
     <header class="mobile-navigation mobile-only">
       <div
         class="nav-menu nav-menu-browse"
@@ -313,6 +320,7 @@
         </button>
       </div>
     </header>
+    -->
     <main>
       <ModalCreation v-if="auth.user" ref="modal_creation" />
       <CollectionCreateModal ref="modal_collection_creation" />
@@ -657,7 +665,7 @@ const userMenuOptions = computed(() => {
   let options = [
     {
       id: "profile",
-      link: `/user/${auth.value.user.username}`,
+      link: `/user/`,
     },
     {
       id: "plus",
