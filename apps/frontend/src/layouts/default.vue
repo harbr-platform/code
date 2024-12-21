@@ -131,7 +131,6 @@
           <template #profile> <UserIcon aria-hidden="true" /> Profile </template>
           <template #notifications> <BellIcon aria-hidden="true" /> Notifications </template>
           <template #saved> <BookmarkIcon aria-hidden="true" /> Saved projects </template>
-          <template #servers> <ServerIcon aria-hidden="true" /> My servers </template>
           <template #plus>
             <ArrowBigUpDashIcon aria-hidden="true" /> Upgrade to Modrinth+
           </template>
@@ -213,10 +212,6 @@
             <NuxtLink class="iconified-button" to="/dashboard/collections">
               <LibraryIcon class="icon" />
               {{ formatMessage(commonMessages.collectionsLabel) }}
-            </NuxtLink>
-            <NuxtLink class="iconified-button" to="/servers/manage">
-              <ServerIcon class="icon" />
-              {{ formatMessage(commonMessages.serversLabel) }}
             </NuxtLink>
             <NuxtLink
               v-if="auth.user.role === 'moderator' || auth.user.role === 'admin'"
@@ -677,10 +672,6 @@ const userMenuOptions = computed(() => {
     {
       id: "saved",
       link: "/dashboard/collections",
-    },
-    {
-      id: "servers",
-      link: "/servers/manage",
     },
     {
       id: "flags",
