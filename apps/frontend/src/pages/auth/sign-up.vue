@@ -35,7 +35,6 @@
       </a>
       -->
     </section>
-    <!--
     <h1>{{ formatMessage(messages.createAccountTitle) }}</h1>
 
     <section class="auth-form">
@@ -136,7 +135,6 @@
         </NuxtLink>
       </div>
     </section>
-    -->
   </div>
 </template>
 
