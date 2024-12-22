@@ -171,7 +171,7 @@ export const logout = async () => {
   } catch {
     /* empty */
   }
-
+  console.log("delete token & logging out")
   await useAuth("none");
   useCookie("auth-token").value = null;
   stopLoading();

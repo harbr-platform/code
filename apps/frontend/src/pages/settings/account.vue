@@ -626,7 +626,7 @@ async function deleteAccount() {
       type: "error",
     });
   }
-
+  console.log("deleting token & account")
   useCookie("auth-token").value = null;
   window.location.href = "/";
 
