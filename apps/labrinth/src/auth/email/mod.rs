@@ -23,8 +23,8 @@ pub fn send_email_raw(
 ) -> Result<(), MailError> {
     let email = Message::builder()
         .from(Mailbox::new(
-            Some("Modrinth".to_string()),
-            Address::new("no-reply", "mail.modrinth.com")?,
+            Some("Harbr".to_string()),
+            Address::new("no-reply", "mail.harbr.dev")?,
         ))
         .to(to.parse()?)
         .subject(subject)
