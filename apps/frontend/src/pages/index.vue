@@ -4,19 +4,16 @@
       <ModrinthIcon class="modrinth-icon" />
       <h1 class="main-header">
         The place for Minecraft
-        <div class="animate-strong">
-          <span>
-            <strong
-              v-for="projectType in tags.projectTypes"
-              :key="projectType.id"
-              class="main-header-strong"
-            >
-              {{ projectType.display }}s <br />
-            </strong>
-            <strong class="main-header-strong">servers <br /></strong>
-            <strong class="main-header-strong">mods</strong>
-          </span>
-        </div>
+        <br/>
+        <span style="height: 1.2em; line-height: 120%;">
+          <strong
+            v-for="projectType in tags.projectTypes"
+            :key="projectType.id"
+            class="main-header-strong"
+          >
+            {{ projectType.display }}s <br />
+          </strong>
+        </span>
       </h1>
       <h2>
         Discover, play, and share Minecraft content through our open-source platform built for the
