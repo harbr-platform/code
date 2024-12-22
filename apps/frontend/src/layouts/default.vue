@@ -663,7 +663,7 @@ const userMenuOptions = computed(() => {
   let options = [
     {
       id: "profile",
-      link: `/user/`,
+      link: `/user/${auth.value.user.username}`,
     },
     {
       id: "plus",
