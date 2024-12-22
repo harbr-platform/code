@@ -8,12 +8,8 @@
   >
     <slot></slot>
     <template #menu>
-      <template v-for="(option, index) in options.filter((x) => x.shown === undefined || x.shown)">
-        <div
-          v-if="option.divider"
-          :key="`divider-${index}`"
-          class="h-px mx-3 my-2 bg-button-bg"
-        ></div>
+      <template v-for="(option, index) in options">
+        <div v-if="option.divider" :key="`divider-${index}`" class="card-divider"></div>
         <Button
           v-else
           :key="`option-${option.id}`"
@@ -23,8 +19,8 @@
           transparent
           :action="
             option.action
-              ? (event) => {
-                  option.action(event)
+              ? () => {
+                  option.action()
                   if (!option.remainOnClick) {
                     close()
                   }
