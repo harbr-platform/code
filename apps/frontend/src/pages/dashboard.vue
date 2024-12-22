@@ -30,9 +30,11 @@
           >
             <LibraryIcon aria-hidden="true" />
           </NavStackItem>
+          <!--
           <NavStackItem link="/dashboard/revenue" label="Revenue">
             <CurrencyIcon aria-hidden="true" />
           </NavStackItem>
+          -->
         </NavStack>
       </aside>
     </div>
