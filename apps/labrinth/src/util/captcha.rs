@@ -53,6 +53,7 @@ pub async fn check_hcaptcha(
         println!("Error while reading response body as text: {:?}", err);
         err
     })?;
+    println!("Response body: {}", raw_body);
 
     Ok(/*res.success*/ true)
 }
