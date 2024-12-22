@@ -51,5 +51,6 @@ pub async fn check_hcaptcha(
         })?;*/
     println!("Response: {:?}", &res);
     println!("Response1: {}", &res.text().await?);
-    Ok(/*res.success*/false)
+    println!("Response2: {}", &res.json().await?);
+    Ok(res.json().await?.success)
 }
