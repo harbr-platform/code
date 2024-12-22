@@ -517,7 +517,7 @@ const {
       const config = useRuntimeConfig();
       const base = import.meta.server ? config.apiBaseUrl : config.public.apiBaseUrl;
 
-      return `${base}/search${requestParams.value}`;
+      return `${base}search${requestParams.value}`;
     },
     {
       transform: (hits) => {

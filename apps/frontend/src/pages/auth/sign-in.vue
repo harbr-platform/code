@@ -140,6 +140,7 @@ import {
   KeyIcon,
   MailIcon,
 } from "@modrinth/assets";
+import { commonMessages } from "@modrinth/ui";
 import HCaptcha from "@/components/ui/HCaptcha.vue";
 
 const { formatMessage } = useVIntl();
