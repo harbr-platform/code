@@ -671,12 +671,14 @@ const userMenuOptions = computed(() => {
       id: "profile",
       link: `/user/${auth.value.user.username}`,
     },
+    /*
     {
       id: "plus",
       link: "/plus",
       color: "purple",
       shown: !flags.value.hidePlusPromoInUserMenu && !isPermission(auth.value.user.badges, 1 << 0),
     },
+    */
     {
       id: "notifications",
       link: "/dashboard/notifications",
@@ -710,10 +712,12 @@ const userMenuOptions = computed(() => {
       id: "organizations",
       link: "/dashboard/organizations",
     },
+    /*
     {
       id: "revenue",
       link: "/dashboard/revenue",
     },
+    */
     {
       id: "analytics",
       link: "/dashboard/analytics",
