@@ -49,9 +49,7 @@ pub async fn check_hcaptcha(
             println!("Error while sending request: {:?}", err);
             err
         })?;*/
-    println!("Response: {:?}", res);
-    println!("Response1: {}", res.text().await?);
-    let res: Response = res.json().await.map_err(|_| ApiError::Turnstile)?;
-    println!("Response2: {:?}", res.success);
-    Ok(res.success)
+    println!("Response: {:?}", &res);
+    println!("Response1: {}", &res.text().await?);
+    Ok(/*res.success*/false)
 }
