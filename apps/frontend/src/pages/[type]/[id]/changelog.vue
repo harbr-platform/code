@@ -1,30 +1,34 @@
 <template>
   <div class="content">
     <div class="mb-3 flex">
-      <VersionFilterControl :versions="props.versions" @switch-page="switchPage" />
+      <VersionFilterControl
+          :versions="props.versions"
+          :game-versions="tags.gameVersions"
+          @update:query="updateQuery"
+      />
       <Pagination
-        :page="currentPage"
-        :count="Math.ceil(filteredVersions.length / 20)"
-        class="ml-auto mt-auto"
-        :link-function="(page) => `?page=${page}`"
-        @switch-page="switchPage"
+          :page="currentPage"
+          :count="Math.ceil(filteredVersions.length / 20)"
+          class="ml-auto mt-auto"
+          :link-function="(page) => `?page=${page}`"
+          @switch-page="switchPage"
       />
     </div>
     <div class="card changelog-wrapper">
       <div
-        v-for="version in filteredVersions.slice((currentPage - 1) * 20, currentPage * 20)"
-        :key="version.id"
-        class="changelog-item"
+          v-for="version in filteredVersions.slice((currentPage - 1) * 20, currentPage * 20)"
+          :key="version.id"
+          class="changelog-item"
       >
         <div
-          :class="`changelog-bar ${version.version_type} ${version.duplicate ? 'duplicate' : ''}`"
+            :class="`changelog-bar ${version.version_type} ${version.duplicate ? 'duplicate' : ''}`"
         />
         <div class="version-wrapper">
           <div class="version-header">
             <div class="version-header-text">
               <h2 class="name">
                 <nuxt-link
-                  :to="`/${props.project.project_type}/${
+                    :to="`/${props.project.project_type}/${
                     props.project.slug ? props.project.slug : props.project.id
                   }/version/${encodeURI(version.displayUrlEnding)}`"
                 >
@@ -34,8 +38,8 @@
               <span v-if="version.author">
                 by
                 <nuxt-link class="text-link" :to="'/user/' + version.author.user.username">{{
-                  version.author.user.username
-                }}</nuxt-link>
+                    version.author.user.username
+                  }}</nuxt-link>
               </span>
               <span>
                 on
@@ -43,28 +47,28 @@
               >
             </div>
             <a
-              :href="version.primaryFile.url"
-              class="iconified-button download"
-              :title="`Download ${version.name}`"
+                :href="version.primaryFile.url"
+                class="iconified-button download"
+                :title="`Download ${version.name}`"
             >
               <DownloadIcon aria-hidden="true" />
               Download
             </a>
           </div>
           <div
-            v-if="version.changelog && !version.duplicate"
-            class="markdown-body"
-            v-html="renderHighlightedString(version.changelog)"
+              v-if="version.changelog && !version.duplicate"
+              class="markdown-body"
+              v-html="renderHighlightedString(version.changelog)"
           />
         </div>
       </div>
     </div>
     <Pagination
-      :page="currentPage"
-      :count="Math.ceil(filteredVersions.length / 20)"
-      class="mb-2 flex justify-end"
-      :link-function="(page) => `?page=${page}`"
-      @switch-page="switchPage"
+        :page="currentPage"
+        :count="Math.ceil(filteredVersions.length / 20)"
+        class="mb-2 flex justify-end"
+        :link-function="(page) => `?page=${page}`"
+        @switch-page="switchPage"
     />
   </div>
 </template>
@@ -72,8 +76,8 @@
 import { Pagination } from "@modrinth/ui";
 import { DownloadIcon } from "@modrinth/assets";
 
+import VersionFilterControl from "@modrinth/ui/src/components/version/VersionFilterControl.vue";
 import { renderHighlightedString } from "~/helpers/highlight.js";
-import VersionFilterControl from "~/components/ui/VersionFilterControl.vue";
 
 const props = defineProps({
   project: {
@@ -108,6 +112,7 @@ useSeoMeta({
 
 const router = useNativeRouter();
 const route = useNativeRoute();
+const tags = useTags();
 
 const currentPage = ref(Number(route.query.page ?? 1));
 const filteredVersions = computed(() => {
@@ -116,15 +121,15 @@ const filteredVersions = computed(() => {
   const selectedVersionTypes = getArrayOrString(route.query.c) ?? [];
 
   return props.versions.filter(
-    (projectVersion) =>
-      (selectedGameVersions.length === 0 ||
-        selectedGameVersions.some((gameVersion) =>
-          projectVersion.game_versions.includes(gameVersion),
-        )) &&
-      (selectedLoaders.length === 0 ||
-        selectedLoaders.some((loader) => projectVersion.loaders.includes(loader))) &&
-      (selectedVersionTypes.length === 0 ||
-        selectedVersionTypes.includes(projectVersion.version_type)),
+      (projectVersion) =>
+          (selectedGameVersions.length === 0 ||
+              selectedGameVersions.some((gameVersion) =>
+                  projectVersion.game_versions.includes(gameVersion),
+              )) &&
+          (selectedLoaders.length === 0 ||
+              selectedLoaders.some((loader) => projectVersion.loaders.includes(loader))) &&
+          (selectedVersionTypes.length === 0 ||
+              selectedVersionTypes.includes(projectVersion.version_type)),
   );
 });
 
@@ -135,6 +140,21 @@ function switchPage(page) {
     query: {
       ...route.query,
       page: currentPage.value !== 1 ? currentPage.value : undefined,
+    },
+  });
+}
+
+function updateQuery(newQueries) {
+  if (newQueries.page) {
+    currentPage.value = Number(newQueries.page);
+  } else if (newQueries.page === undefined) {
+    currentPage.value = 1;
+  }
+
+  router.replace({
+    query: {
+      ...route.query,
+      ...newQueries,
     },
   });
 }
@@ -196,11 +216,11 @@ function switchPage(page) {
 
     &.duplicate {
       background: linear-gradient(
-        to bottom,
-        transparent,
-        transparent 30%,
-        var(--color) 30%,
-        var(--color)
+              to bottom,
+              transparent,
+              transparent 30%,
+              var(--color) 30%,
+              var(--color)
       );
       background-size: 100% 10px;
     }

@@ -6,11 +6,11 @@ permissions:
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
     types: [opened, synchronize]
   merge_group:
-    types: [ checks_requested ]
+    types: [checks_requested]
 
 jobs:
   build:

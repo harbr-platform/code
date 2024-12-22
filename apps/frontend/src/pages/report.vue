@@ -99,6 +99,12 @@ import { useImageUpload } from "~/composables/image-upload.ts";
 const tags = useTags();
 const route = useNativeRoute();
 
+const router = useRouter();
+const auth = await useAuth();
+if (!auth.value.user) {
+  router.push("/auth/sign-in?redirect=" + encodeURIComponent(route.fullPath));
+}
+
 const accessQuery = (id: string): string => {
   return route.query?.[id]?.toString() || "";
 };

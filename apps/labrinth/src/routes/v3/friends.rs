@@ -33,8 +33,8 @@ pub async fn add_friend(
         &session_queue,
         Some(&[Scopes::USER_WRITE]),
     )
-    .await?
-    .1;
+        .await?
+        .1;
 
     let string = info.into_inner().0;
     let friend =
@@ -49,7 +49,7 @@ pub async fn add_friend(
                 friend.id,
                 &**pool,
             )
-            .await?
+                .await?
         {
             if friend.accepted {
                 return Err(ApiError::InvalidInput(
@@ -69,13 +69,11 @@ pub async fn add_friend(
                 true,
                 &mut transaction,
             )
-            .await?;
+                .await?;
 
             async fn send_friend_status(
                 user_id: UserId,
                 friend_id: UserId,
-                pool: &PgPool,
-                redis: &RedisPool,
                 sockets: &ActiveSockets,
             ) -> Result<(), ApiError> {
                 if let Some(pair) = sockets.auth_sockets.get(&user_id.into()) {
@@ -85,45 +83,21 @@ pub async fn add_friend(
                     {
                         let (_, socket) = socket.value_mut();
 
-                        if socket
+                        let _ = socket
                             .text(serde_json::to_string(
                                 &ServerToClientMessage::StatusUpdate {
                                     status: friend_status.clone(),
                                 },
                             )?)
-                            .await
-                            .is_err()
-                        {
-                            close_socket(
-                                friend_id.into(),
-                                pool,
-                                redis,
-                                sockets,
-                            )
-                            .await?;
-                        }
+                            .await;
                     }
                 }
 
                 Ok(())
             }
 
-            send_friend_status(
-                friend.user_id,
-                friend.friend_id,
-                &pool,
-                &redis,
-                &db,
-            )
-            .await?;
-            send_friend_status(
-                friend.friend_id,
-                friend.user_id,
-                &pool,
-                &redis,
-                &db,
-            )
-            .await?;
+            send_friend_status(friend.user_id, friend.friend_id, &db).await?;
+            send_friend_status(friend.friend_id, friend.user_id, &db).await?;
         } else {
             if friend.id == user.id.into() {
                 return Err(ApiError::InvalidInput(
@@ -143,8 +117,8 @@ pub async fn add_friend(
                 created: Utc::now(),
                 accepted: false,
             }
-            .insert(&mut transaction)
-            .await?;
+                .insert(&mut transaction)
+                .await?;
 
             if let Some(mut socket) = db.auth_sockets.get_mut(&friend.id.into())
             {
@@ -157,7 +131,7 @@ pub async fn add_friend(
                     .await
                     .is_err()
                 {
-                    close_socket(user.id, &pool, &redis, &db).await?;
+                    close_socket(user.id, &pool, &db).await?;
                 }
             }
         }
@@ -177,6 +151,7 @@ pub async fn remove_friend(
     pool: web::Data<PgPool>,
     redis: web::Data<RedisPool>,
     session_queue: web::Data<AuthQueue>,
+    db: web::Data<ActiveSockets>,
 ) -> Result<HttpResponse, ApiError> {
     let user = get_user_from_headers(
         &req,
@@ -185,8 +160,8 @@ pub async fn remove_friend(
         &session_queue,
         Some(&[Scopes::USER_WRITE]),
     )
-    .await?
-    .1;
+        .await?
+        .1;
 
     let string = info.into_inner().0;
     let friend =
@@ -200,7 +175,19 @@ pub async fn remove_friend(
             friend.id,
             &mut transaction,
         )
-        .await?;
+            .await?;
+
+        if let Some(mut socket) = db.auth_sockets.get_mut(&friend.id.into()) {
+            let (_, socket) = socket.value_mut();
+
+            let _ = socket
+                .text(serde_json::to_string(
+                    &ServerToClientMessage::FriendRequestRejected {
+                        from: user.id,
+                    },
+                )?)
+                .await;
+        }
 
         transaction.commit().await?;
 
@@ -224,8 +211,8 @@ pub async fn friends(
         &session_queue,
         Some(&[Scopes::USER_READ]),
     )
-    .await?
-    .1;
+        .await?
+        .1;
 
     let friends =
         crate::database::models::friend_item::FriendItem::get_user_friends(
@@ -233,10 +220,10 @@ pub async fn friends(
             None,
             &**pool,
         )
-        .await?
-        .into_iter()
-        .map(UserFriend::from)
-        .collect::<Vec<_>>();
+            .await?
+            .into_iter()
+            .map(UserFriend::from)
+            .collect::<Vec<_>>();
 
     Ok(HttpResponse::Ok().json(friends))
 }

@@ -1,4 +1,10 @@
 <template>
+  <div class="pointer-events-none fixed inset-0 z-[-1]">
+    <div id="fixed-background-teleport" class="relative"></div>
+  </div>
+  <div class="pointer-events-none absolute inset-0 z-[-1]">
+    <div id="absolute-background-teleport" class="relative"></div>
+  </div>
   <div ref="main_page" class="layout" :class="{ 'expanded-mobile-nav': isBrowseMenuOpen }">
     <div
       v-if="auth.user && !auth.user.email_verified && route.path !== '/auth/verify-email'"
@@ -54,7 +60,7 @@
       </div>
     </div>
     <header
-      class="experimental-styles-within desktop-only relative z-[5] mx-auto grid max-w-[1280px] grid-cols-[1fr_auto] items-center gap-2 px-3 py-4 lg:grid-cols-[auto_1fr_auto]"
+        class="experimental-styles-within desktop-only relative z-[5] mx-auto grid max-w-[1280px] grid-cols-[1fr_auto] items-center gap-2 px-6 py-4 lg:grid-cols-[auto_1fr_auto]"
     >
       <div>
         <NuxtLink to="/" aria-label="Harbr home page">
@@ -98,6 +104,7 @@
             class="btn-dropdown-animation flex items-center gap-1 rounded-xl bg-transparent px-2 py-1"
             position="bottom"
             direction="left"
+            :dropdown-id="createPopoutId"
             aria-label="Create new..."
             :options="[
               {
@@ -129,6 +136,7 @@
         </ButtonStyled>
         <OverflowMenu
           v-if="auth.user"
+          :dropdown-id="userPopoutId"
           class="btn-dropdown-animation flex items-center gap-1 rounded-xl bg-transparent px-2 py-1"
           :options="userMenuOptions"
         >
@@ -452,15 +460,14 @@ import {
   GlassesIcon,
   PaintBrushIcon,
   PackageOpenIcon,
+  XIcon as CrossIcon,
+  ScaleIcon as ModerationIcon,
+  BellIcon as NotificationIcon,
 } from "@modrinth/assets";
-import { Button, ButtonStyled, OverflowMenu, Avatar } from "@modrinth/ui";
+import { Button, ButtonStyled, OverflowMenu, Avatar, commonMessages } from "@modrinth/ui";
 
-import CrossIcon from "assets/images/utils/x.svg";
-import NotificationIcon from "assets/images/sidebar/notifications.svg";
-import ModerationIcon from "assets/images/sidebar/admin.svg";
 import ModalCreation from "~/components/ui/ModalCreation.vue";
 import { getProjectTypeMessage } from "~/utils/i18n-project-type.ts";
-import { commonMessages } from "~/utils/common-messages.ts";
 import CollectionCreateModal from "~/components/ui/CollectionCreateModal.vue";
 import OrganizationCreateModal from "~/components/ui/OrganizationCreateModal.vue";
 /* import TeleportOverflowMenu from "~/components/ui/servers/TeleportOverflowMenu.vue"; */
@@ -477,6 +484,9 @@ const flags = useFeatureFlags();
 const config = useRuntimeConfig();
 const route = useNativeRoute();
 const link = config.public.siteUrl + route.path.replace(/\/+$/, "");
+
+const createPopoutId = useId();
+const userPopoutId = useId();
 
 const verifyEmailBannerMessages = defineMessages({
   title: {
@@ -853,7 +863,6 @@ function hideStagingBanner() {
 
 .layout {
   min-height: 100vh;
-  background-color: var(--color-bg);
   display: block;
 
   @media screen and (min-width: 1024px) {
@@ -1269,7 +1278,7 @@ function hideStagingBanner() {
   }
 
   main {
-    padding-top: 0.75rem;
+    padding-top: 1.5rem;
   }
 }
 </style>

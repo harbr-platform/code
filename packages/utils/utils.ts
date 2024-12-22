@@ -14,7 +14,7 @@ export const computeVersions = (versions, members) => {
   const authorMembers = {}
 
   for (const version of versions.sort(
-    (a, b) => dayjs(a.date_published) - dayjs(b.date_published),
+      (a, b) => dayjs(a.date_published) - dayjs(b.date_published),
   )) {
     if (visitedVersions.includes(version.version_number)) {
       visitedVersions.push(version.version_number)
@@ -49,15 +49,15 @@ export const computeVersions = (versions, members) => {
   }
 
   return returnVersions
-    .reverse()
-    .map((version, index) => {
-      const nextVersion = returnVersions[index + 1]
-      if (nextVersion && version.changelog && nextVersion.changelog === version.changelog) {
-        return { duplicate: true, ...version }
-      }
-      return { duplicate: false, ...version }
-    })
-    .sort((a, b) => dayjs(b.date_published) - dayjs(a.date_published))
+      .reverse()
+      .map((version, index) => {
+        const nextVersion = returnVersions[index + 1]
+        if (nextVersion && version.changelog && nextVersion.changelog === version.changelog) {
+          return { duplicate: true, ...version }
+        }
+        return { duplicate: false, ...version }
+      })
+      .sort((a, b) => dayjs(b.date_published) - dayjs(a.date_published))
 }
 
 export const sortedCategories = (tags) => {
@@ -95,9 +95,9 @@ export function formatMoney(number, abbreviate = false) {
     return `$${(x / 1000).toFixed(2).toString()}k`
   }
   return `$${x
-    .toFixed(2)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+      .toFixed(2)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
 }
 
 export const formatBytes = (bytes, decimals = 2) => {
@@ -202,10 +202,10 @@ export const formatVersions = (versionArray, gameVersions) => {
       const intervalBase = intervals[currentInterval]
 
       if (
-        (index - intervalBase[intervalBase.length - 1][1] === 1 ||
-          releaseIndex - intervalBase[intervalBase.length - 1][2] === 1) &&
-        (allVersions[intervalBase[0][1]].version_type === 'release' ||
-          allVersions[index].version_type !== 'release')
+          (index - intervalBase[intervalBase.length - 1][1] === 1 ||
+              releaseIndex - intervalBase[intervalBase.length - 1][2] === 1) &&
+          (allVersions[intervalBase[0][1]].version_type === 'release' ||
+              allVersions[index].version_type !== 'release')
       ) {
         intervalBase[1] = [versionArray[i], index, releaseIndex]
       } else {
@@ -294,5 +294,39 @@ export const acceptFileFromProjectType = (projectType) => {
       return '.mrpack,application/x-modrinth-modpack+zip,application/zip'
     default:
       return '*'
+  }
+}
+
+// Sorts alphabetically, but correctly identifies 8x, 128x, 256x, etc
+// identifier[0], then if it ties, identifier[1], etc
+export const sortByNameOrNumber = (sortable, identifiers) => {
+  sortable.sort((a, b) => {
+    for (const identifier of identifiers) {
+      const aNum = parseFloat(a[identifier])
+      const bNum = parseFloat(b[identifier])
+      if (isNaN(aNum) && isNaN(bNum)) {
+        // Both are strings, sort alphabetically
+        const stringComp = a[identifier].localeCompare(b[identifier])
+        if (stringComp != 0) return stringComp
+      } else if (!isNaN(aNum) && !isNaN(bNum)) {
+        // Both are numbers, sort numerically
+        const numComp = aNum - bNum
+        if (numComp != 0) return numComp
+      } else {
+        // One is a number and one is a string, numbers go first
+        const numStringComp = isNaN(aNum) ? 1 : -1
+        if (numStringComp != 0) return numStringComp
+      }
+    }
+    return 0
+  })
+  return sortable
+}
+
+export const getArrayOrString = (x: string[] | string): string[] => {
+  if (typeof x === 'string') {
+    return [x]
+  } else {
+    return x
   }
 }
