@@ -41,7 +41,7 @@ defineExpose({
   <div
     id="h-captcha"
     class="h-captcha"
-    data-sitekey="4a7a2c80-68f2-4190-9d52-131c76e0c14e"
+    data-sitekey="c7e8feb0-9b0e-4850-ae9a-9c1015bc3298"
     :data-theme="$theme.active === 'light' ? 'light' : 'dark'"
     data-callback="hCaptchaUpdateToken"
   ></div>
