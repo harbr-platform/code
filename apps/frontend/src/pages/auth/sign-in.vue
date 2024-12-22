@@ -57,7 +57,6 @@
         </a>
         -->
       </section>
-      <!--
       <h1>{{ formatMessage(messages.usePasswordLabel) }}</h1>
 
 
@@ -124,7 +123,7 @@
             </template>
           </IntlFormatted>
         </div>
-      </section> -->
+      </section>
     </template>
   </div>
 </template>

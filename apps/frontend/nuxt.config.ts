@@ -328,14 +328,14 @@ export default defineNuxtConfig({
       production: isProduction(),
       featureFlagOverrides: getFeatureFlagOverrides(),
 
-      owner: process.env.VERCEL_GIT_REPO_OWNER || "modrinth",
+      owner: process.env.VERCEL_GIT_REPO_OWNER || "harbr-platform",
       slug: process.env.VERCEL_GIT_REPO_SLUG || "code",
       branch:
         process.env.VERCEL_GIT_COMMIT_REF ||
         process.env.CF_PAGES_BRANCH ||
         // @ts-ignore
         globalThis.CF_PAGES_BRANCH ||
-        "master",
+        "main",
       hash:
         process.env.VERCEL_GIT_COMMIT_SHA ||
         process.env.CF_PAGES_COMMIT_SHA ||
