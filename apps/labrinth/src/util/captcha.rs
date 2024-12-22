@@ -35,22 +35,15 @@ pub async fn check_hcaptcha(
     form.insert("secret", &*secret);
     form.insert("remoteip", ip_addr);
 
-    println!("Sending hcaptcha request, {}, {}, {}", challenge, &*secret, ip_addr);
-    let res: reqwest::Response = client
+    let val: Response = client
         .post("https://api.hcaptcha.com/siteverify")
         .form(&form)
         .send()
         .await
-        .map_err(|_| ApiError::Turnstile)?;
-    /*
+        .map_err(|_| ApiError::Turnstile)?
         .json()
         .await
-        .map_err(|err| {
-            println!("Error while sending request: {:?}", err);
-            err
-        })?;*/
-    println!("Response: {:?}", &res);
-    println!("Response1: {}", &res.text().await?);
-    println!("Response2: {}", &res.json().await?);
-    Ok(res.json().await?.success)
+        .map_err(|_| ApiError::Turnstile)?;
+
+    Ok(val.success)
 }
