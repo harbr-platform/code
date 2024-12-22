@@ -1,15 +1,15 @@
 <template>
   <PurchaseModal
-    ref="purchaseModal"
-    :product="midasProduct"
-    :country="country"
-    :publishable-key="config.public.stripePublishableKey"
-    :send-billing-request="
+      ref="purchaseModal"
+      :product="midasProduct"
+      :country="country"
+      :publishable-key="config.public.stripePublishableKey"
+      :send-billing-request="
       async (body) =>
         await useBaseFetch('billing/payment', { internal: true, method: 'POST', body })
     "
-    :fetch-payment-data="fetchPaymentData"
-    :on-error="
+      :fetch-payment-data="fetchPaymentData"
+      :on-error="
       (err) =>
         data.$notify({
           group: 'main',
@@ -18,9 +18,9 @@
           text: err.message ?? (err.data ? err.data.description : err),
         })
     "
-    :customer="customer"
-    :payment-methods="paymentMethods"
-    :return-url="`${config.public.siteUrl}/settings/billing`"
+      :customer="customer"
+      :payment-methods="paymentMethods"
+      :return-url="`${config.public.siteUrl}/settings/billing`"
   />
   <div class="main-hero">
     <div class="flex max-w-screen-lg flex-col items-center gap-4 text-center">
@@ -40,9 +40,9 @@
         annual billing!
       </p>
       <nuxt-link
-        v-if="auth.user && isPermission(auth.user.badges, 1 << 0)"
-        to="/settings/billing"
-        class="btn btn-purple btn-large"
+          v-if="auth.user && isPermission(auth.user.badges, 1 << 0)"
+          to="/settings/billing"
+          class="btn btn-purple btn-large"
       >
         <SettingsIcon aria-hidden="true" />
         Manage subscription
@@ -51,9 +51,9 @@
         Subscribe
       </button>
       <nuxt-link
-        v-else
-        :to="`/auth/sign-in?redirect=${encodeURIComponent('/plus?showModal=true')}`"
-        class="btn btn-purple btn-large"
+          v-else
+          :to="`/auth/sign-in?redirect=${encodeURIComponent('/plus?showModal=true')}`"
+          class="btn btn-purple btn-large"
       >
         Subscribe
       </nuxt-link>
@@ -93,13 +93,13 @@ import {
   StarIcon,
   SettingsIcon,
 } from "@modrinth/assets";
-import { PurchaseModal } from "@modrinth/ui";
-import { calculateSavings, formatPrice, getCurrency } from "@modrinth/utils";
-import { products } from "~/generated/state.json";
+import {PurchaseModal} from "@modrinth/ui";
+import {calculateSavings, formatPrice, getCurrency} from "@modrinth/utils";
+import {products} from "~/generated/state.json";
 
 const title = "Subscribe to Modrinth Plus!";
 const description =
-  "Subscribe to Modrinth Plus to go ad-free, support Modrinth's development, and get an exclusive profile badge! Half your subscription goes directly to Modrinth creators.";
+    "Subscribe to Modrinth Plus to go ad-free, support Modrinth's development, and get an exclusive profile badge! Half your subscription goes directly to Modrinth creators.";
 
 useSeoMeta({
   title,
@@ -128,15 +128,15 @@ const purchaseModal = ref();
 const midasProduct = ref(products.find((x) => x.metadata.type === "midas"));
 const country = useUserCountry();
 const price = computed(() =>
-  midasProduct.value.prices.find((x) => x.currency_code === getCurrency(country.value)),
+    midasProduct.value.prices.find((x) => x.currency_code === getCurrency(country.value)),
 );
 const customer = ref();
 const paymentMethods = ref([]);
 
 async function fetchPaymentData() {
   [customer.value, paymentMethods.value] = await Promise.all([
-    useBaseFetch("billing/customer", { internal: true }),
-    useBaseFetch("billing/payment_methods", { internal: true }),
+    useBaseFetch("billing/customer", {internal: true}),
+    useBaseFetch("billing/payment_methods", {internal: true}),
   ]);
 }
 
@@ -150,7 +150,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .main-hero {
   background: linear-gradient(360deg, rgba(199, 138, 255, 0.2) 10.92%, var(--color-bg) 100%),
-    var(--color-accent-contrast);
+  var(--color-accent-contrast);
   margin-top: -5rem;
   padding: 11.25rem 1rem 8rem;
 

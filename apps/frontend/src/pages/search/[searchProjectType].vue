@@ -42,7 +42,7 @@
           Install content to server
         </h1>
       </template>
-      <NavTabs v-if="!server" :links="selectableProjectTypes" class="hidden md:flex" />
+      <!--<NavTabs v-if="!server" :links="selectableProjectTypes" class="hidden md:flex" />-->
     </section>
     <aside
         :class="{
@@ -602,11 +602,6 @@ function setClosestMaxResults() {
 
 const selectableProjectTypes = computed(() => {
   return [
-    { label: "Mods", href: `/mods` },
-    { label: "Resource Packs", href: `/resourcepacks` },
-    { label: "Data Packs", href: `/datapacks` },
-    { label: "Shaders", href: `/shaders` },
-    { label: "Modpacks", href: `/modpacks` },
     { label: "Plugins", href: `/plugins` },
   ];
 });

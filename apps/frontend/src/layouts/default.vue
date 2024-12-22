@@ -145,16 +145,12 @@
           <template #profile> <UserIcon aria-hidden="true" /> Profile </template>
           <template #notifications> <BellIcon aria-hidden="true" /> Notifications </template>
           <template #saved> <BookmarkIcon aria-hidden="true" /> Saved projects </template>
-          <template #plus>
-            <ArrowBigUpDashIcon aria-hidden="true" /> Upgrade to Modrinth+
-          </template>
           <template #settings> <SettingsIcon aria-hidden="true" /> Settings </template>
           <template #flags> <ReportIcon aria-hidden="true" /> Feature flags </template>
           <template #projects> <BoxIcon aria-hidden="true" /> Projects </template>
           <template #organizations>
             <OrganizationIcon aria-hidden="true" /> Organizations
           </template>
-          <template #revenue> <CurrencyIcon aria-hidden="true" /> Revenue </template>
           <template #analytics> <ChartIcon aria-hidden="true" /> Analytics </template>
           <template #moderation> <ModerationIcon aria-hidden="true" /> Moderation </template>
           <template #sign-out> <LogOutIcon aria-hidden="true" /> Sign out </template>
