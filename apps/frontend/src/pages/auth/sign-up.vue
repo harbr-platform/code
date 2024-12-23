@@ -28,12 +28,10 @@
         <SSOSteamIcon />
         <span>Steam</span>
       </a> -->
-      <!--
       <a class="btn" :href="getAuthUrl('gitlab', redirectTarget)">
         <SSOGitLabIcon />
         <span>GitLab</span>
       </a>
-      -->
     </section>
     <h1>{{ formatMessage(messages.createAccountTitle) }}</h1>
 
