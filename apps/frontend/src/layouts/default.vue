@@ -634,7 +634,7 @@ useSeoMeta({
         "Discover and publish projects on Harbr with a modern, easy to use interface and API.",
     }),
   publisher: "Harbr",
-  themeColor: "#1bd96a",
+  themeColor: "#4f9cff",
   colorScheme: "dark light",
 
   // OpenGraph
