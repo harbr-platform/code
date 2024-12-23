@@ -374,7 +374,7 @@
     <section id="data-export" class="universal-card">
       <h2>Data export</h2>
       <p>
-        Request a copy of all your personal data you have uploaded to Modrinth. This may take
+        Request a copy of all your personal data you have uploaded to Harbr. This may take
         several minutes to complete.
       </p>
       <a v-if="generated" class="iconified-button" :href="generated" download="export.json">
@@ -591,24 +591,9 @@ const authProviders = [
     icon: GitLabIcon,
   },
   {
-    id: "steam",
-    display: "Steam",
-    icon: SteamIcon,
-  },
-  {
     id: "discord",
     display: "Discord",
     icon: DiscordIcon,
-  },
-  {
-    id: "microsoft",
-    display: "Microsoft",
-    icon: MicrosoftIcon,
-  },
-  {
-    id: "google",
-    display: "Google",
-    icon: GoogleIcon,
   },
 ];
 

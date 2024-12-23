@@ -9,7 +9,7 @@
     />
     <h2 class="text-2xl">{{ formatMessage(commonSettingsMessages.authorizedApps) }}</h2>
     <p>
-      When you authorize an application with your Modrinth account, you grant it access to your
+      When you authorize an application with your Harbr account, you grant it access to your
       account. You can manage and review access to your account here at any time.
     </p>
     <div v-if="appInfoLookup.length === 0" class="universal-card recessed">

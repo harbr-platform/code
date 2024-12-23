@@ -148,9 +148,9 @@
       </button>
     </div>
     <p>
-      Applications can be used to authenticate Modrinth's users with your products. For more
+      Applications can be used to authenticate Harbr's users with your products. For more
       information, see
-      <a class="text-link" href="https://docs.modrinth.com">Modrinth's API documentation</a>.
+      <a class="text-link" href="https://docs.modrinth.com">Harbr's API documentation</a>.
     </p>
     <div v-for="app in usersApps" :key="app.id" class="universal-card recessed token mt-4">
       <div class="token-info">
