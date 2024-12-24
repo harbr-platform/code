@@ -469,8 +469,8 @@ const sumDownloads = computed(() => {
 });
 
 const joinDate = computed(() => new Date(user.value.created));
-const MODRINTH_BETA_END_DATE = new Date("2022-02-27T08:00:00.000Z");
-const MODRINTH_ALPHA_END_DATE = new Date("2020-11-30T08:00:00.000Z");
+const MODRINTH_BETA_END_DATE = new Date("2025-02-01T08:00:00.000Z");
+const MODRINTH_ALPHA_END_DATE = new Date("2025-01-01T08:00:00.000Z");
 
 const badges = computed(() => {
   const badges = [];
@@ -487,9 +487,9 @@ const badges = computed(() => {
     badges.push("plus");
   }
 
-  if (sumDownloads.value > 10000000) {
+  /*if (sumDownloads.value > 10000000) {
     badges.push("10m-club");
-  }
+  }*/
 
   if (
     isPermission(user.value.badges, 1 << 1) ||
