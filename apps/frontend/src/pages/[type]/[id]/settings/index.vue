@@ -225,7 +225,7 @@
         </h3>
       </div>
       <p>
-        Removes your project from Modrinth's servers and search. Clicking on this will delete your
+        Removes your project from Harbr's servers and search. Clicking on this will delete your
         project, so be extra careful!
       </p>
       <button
