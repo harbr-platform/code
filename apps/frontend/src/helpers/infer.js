@@ -2,7 +2,7 @@
 import JSZip from "jszip";
 import yaml from "js-yaml";
 /* import { satisfies } from "semver"; */
-import init, { WasmObbyArchive } from "/public/obsidian_lib.js";
+import init, { WasmObbyArchive } from "@modrinth/utils/validator/obsidian_lib.js";
 
 export const inferVersionInfo = async function (rawFile, project, gameVersions) {
   function versionType(number) {
