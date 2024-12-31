@@ -143,7 +143,6 @@ impl super::Validator for SpongeValidator {
 }
 
 use obsidian_lib::{ObbyArchive};
-use std::io::{Read, Seek};
 /*
 // Or from any Read + Seek source
 let file = File::open("plugin.obby")?;
@@ -176,15 +175,6 @@ impl super::Validator for ObsidianValidator {
                 let archive = ObbyArchive::new(bytes.clone())?;
                 let entries = archive.list_entries();
                 if entries.iter().any(|x| x == "plugin.json") {
-                    Ok(ValidationResult::Pass)
-                } else {
-                    Ok(ValidationResult::Warning("No plugin.json present for Obsidian plugin."))
-                }
-            }
-            FileInput::RawFile(bytes) => {
-                let archive = zip::ZipArchive::new(Cursor::new(bytes))?;
-                let entries = archive.file_names().collect::<Vec<_>>();
-                if entries.iter().any(|x| x == &"plugin.json") {
                     Ok(ValidationResult::Pass)
                 } else {
                     Ok(ValidationResult::Warning("No plugin.json present for Obsidian plugin."))

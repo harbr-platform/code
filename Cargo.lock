@@ -3775,6 +3775,7 @@ dependencies = [
  "maxminddb",
  "meilisearch-sdk",
  "murmur2",
+ "obsidian-lib",
  "rand 0.8.5",
  "rand_chacha 0.3.1",
  "redis",
@@ -4637,6 +4638,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "084f1a5821ac4c651660a94a7153d27ac9d8a53736203f58b31945ded098070a"
 dependencies = [
  "memchr",
+]
+
+[[package]]
+name = "obsidian-lib"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87fc55f4b9803b764d7efd2c0ff013428969bf9971cadcfa395aa3008d50d7f2"
+dependencies = [
+ "flate2",
 ]
 
 [[package]]

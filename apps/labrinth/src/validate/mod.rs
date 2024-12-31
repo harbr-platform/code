@@ -115,7 +115,7 @@ static VALIDATORS: &[&dyn Validator] = &[
     &VelocityValidator,
     &SpongeValidator,
     // #------ NEW VALIDATORS -------#
-    &PumpkinValidator,
+    &ObsidianValidator,
     // #-----------------------------#
     //&CanvasShaderValidator,
     //&ShaderValidator,
