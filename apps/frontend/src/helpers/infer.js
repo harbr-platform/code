@@ -2,6 +2,7 @@
 import JSZip from "jszip";
 import yaml from "js-yaml";
 /* import { satisfies } from "semver"; */
+import init, { WasmObbyArchive } from "./public/obsidian_lib.js";
 
 export const inferVersionInfo = async function (rawFile, project, gameVersions) {
   function versionType(number) {
@@ -97,7 +98,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
     .filter((it) => it.version_type === "release")
     .map((it) => it.version);
   */
-  const inferFunctions = {
+  const inferFunctionsJava = {
     /*
     // NeoForge
     "META-INF/neoforge.mods.toml": (file) => {
@@ -514,16 +515,48 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
     */
   };
 
-  const zipReader = new JSZip();
+  const inferFunctionsObby = {
+    "plugin.json": (file) => {
+      const pluginJson = JSON.parse(file);
+      return {
+        name: `${pluginJson.name} ${pluginJson.version}`,
+        version_number: pluginJson.version,
+        version_type: versionType(pluginJson.version),
+        loaders: ["obsidian"],
+        // game versions are not YET supported for obsidian
+      };
+    },
+  }
 
-  const zip = await zipReader.loadAsync(rawFile);
 
-  for (const fileName in inferFunctions) {
-    const file = zip.file(fileName);
 
-    if (file !== null) {
-      const text = await file.async("text");
-      return inferFunctions[fileName](text, zip);
+  // Match the file extension of the rawFile
+  const fileExtension = rawFile.name.split(".").pop();
+  if (fileExtension === "obby") {
+    const buffer = await rawFile.arrayBuffer();
+    const wasm = await init();
+    const archive = await WasmObbyArchive(buffer);
+    const entries = archive.list_entries();
+    if (entries.includes("plugin.json")) {
+      const data = archive.extract_entry("plugin.json");
+      console.log(data);
+      const textDecoder = new TextDecoder("utf-8");
+      console.log(textDecoder);
+      const pluginJson = textDecoder.decode(data);
+      return inferFunctionsObby["plugin.json"](pluginJson);
+    }
+  } else {
+    const zipReader = new JSZip();
+
+    const zip = await zipReader.loadAsync(rawFile);
+
+    for (const fileName in inferFunctionsJava) {
+      const file = zip.file(fileName);
+
+      if (file !== null) {
+        const text = await file.async("text");
+        return inferFunctionsJava[fileName](text, zip);
+      }
     }
   }
 };

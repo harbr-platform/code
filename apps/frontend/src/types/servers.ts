@@ -158,7 +158,10 @@ export type Loaders =
   | "Spigot"
   | "Bukkit"
   | "Vanilla"
-  | "Purpur";
+  | "Purpur"
+  // new
+  | "Obsidian"
+    ;
 
 export interface WSLogEvent {
   event: "log";

@@ -16,6 +16,9 @@ const PLUGIN_LOADERS: &[&str] = &[
     "waterfall",
     "velocity",
     "sponge",
+    // #------ NEW -------#
+    "obsidian",
+    // #------------------#
 ];
 
 struct WebhookMetadata {
@@ -202,6 +205,9 @@ async fn get_webhook_metadata(
                             "vanilla" => 1107350794178678855,
                             "velocity" => 1049793419108700170,
                             "waterfall" => 1049793420937412638,
+                            // temp copy bukkit
+                            "obsidian" => 1049793345481883689,
+                            // end temp
                             _ => 1049805243866681424,
                         };
 
