@@ -142,61 +142,57 @@ impl super::Validator for SpongeValidator {
     }
 }
 
-pub struct PumpkinValidator;
+use obsidian_lib::{ObbyArchive};
+use std::io::{Read, Seek};
+/*
+// Or from any Read + Seek source
+let file = File::open("plugin.obby")?;
+let mut archive = ObbyArchive::new(file)?;
+let entries = archive.list_entries();
+let data = archive.extract_entry("plugin.json")?;
+*/
 
-impl super::Validator for PumpkinValidator {
+pub struct ObsidianValidator;
+
+impl super::Validator for ObsidianValidator {
     fn get_file_extensions(&self) -> &[&str] {
-        &["zip", "wasm"]
+        &["obby"]
     }
 
     fn get_supported_loaders(&self) -> &[&str] {
-        &["pumpkin"]
+        &["obsidian"]
     }
 
     fn get_supported_game_versions(&self) -> SupportedGameVersions {
         SupportedGameVersions::All
     }
 
-    // validator checks for the existence of a *.wasm by itself or a *.zip with a *.wasm inside
-    // any name works, and make sure not to unzip the wasm file no just a pumpkin.wasm
     fn validate(
         &self,
-        //archive: &mut ZipArchive<Cursor<bytes::Bytes>>
         input: FileInput,
     ) -> Result<ValidationResult, ValidationError> {
-        // Match input and validate accordingly
         return match input {
-            FileInput::Archive(archive) => {
-                if archive_contains_wasm(&archive) {
+            FileInput::Obby(bytes) => {
+                let archive = ObbyArchive::new(bytes.clone())?;
+                let entries = archive.list_entries();
+                if entries.iter().any(|x| x == "plugin.json") {
                     Ok(ValidationResult::Pass)
                 } else {
-                    Ok(ValidationResult::Warning("No .wasm present for Pumpkin file."))
-                }
-            }
-            FileInput::Wasm(bytes) => {
-                if raw_contains_wasm(&bytes) {
-                    Ok(ValidationResult::Pass)
-                } else {
-                    Ok(ValidationResult::Warning("No .wasm present for Pumpkin file."))
+                    Ok(ValidationResult::Warning("No plugin.json present for Obsidian plugin."))
                 }
             }
             FileInput::RawFile(bytes) => {
-                if raw_contains_wasm(&bytes) {
+                let archive = zip::ZipArchive::new(Cursor::new(bytes))?;
+                let entries = archive.file_names().collect::<Vec<_>>();
+                if entries.iter().any(|x| x == &"plugin.json") {
                     Ok(ValidationResult::Pass)
                 } else {
-                    Ok(ValidationResult::Warning("No .wasm present for Pumpkin file."))
+                    Ok(ValidationResult::Warning("No plugin.json present for Obsidian plugin."))
                 }
             }
-        }
+            _ => Ok(ValidationResult::Warning(
+                "Invalid file type: Not an Obby archive",
+            )),
+        };
     }
-}
-
-// needs improvement
-fn archive_contains_wasm(archive: &ZipArchive<Cursor<bytes::Bytes>>) -> bool {
-    archive.file_names().any(|x| x.ends_with(".wasm"))
-}
-
-// Helper function to check if raw bytes contain the WebAssembly magic header
-fn raw_contains_wasm(bytes: &[u8]) -> bool {
-    bytes.windows(4).any(|window| window == [0x00, 0x61, 0x73, 0x6d])
 }

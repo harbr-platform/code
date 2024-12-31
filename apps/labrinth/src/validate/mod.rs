@@ -94,8 +94,9 @@ pub trait Validator: Sync {
 #[derive(Clone)]
 pub enum FileInput {
     Archive(ZipArchive<Cursor<bytes::Bytes>>),
-    Wasm(bytes::Bytes),
-    RawFile(bytes::Bytes),
+    Obby(Cursor<bytes::Bytes>),
+    Wasm(Cursor<bytes::Bytes>),
+    RawFile(Cursor<bytes::Bytes>),
 }
 
 static ALWAYS_ALLOWED_EXT: &[&str] = &["zip", "txt"];
@@ -164,9 +165,27 @@ async fn validate_minecraft_file(
 ) -> Result<ValidationResult, ValidationError> {
     actix_web::web::block(move || {
         let file_input = match file_extension.as_str() {
-            "zip" | "jar" => FileInput::Archive(ZipArchive::new(Cursor::new(data))?),
-            "wasm" => FileInput::Wasm(data),
-            _ => FileInput::RawFile(data),
+            "zip" | "jar" => {
+                // Dynamically create a ZipArchive for the Archive variant
+                let cursor = Cursor::new(data);
+                let archive = ZipArchive::new(cursor)?;
+                FileInput::Archive(archive)
+            }
+            "obby" => {
+                // Use Cursor for Obby, so it supports Read + Seek
+                let reader = Cursor::new(data);
+                FileInput::Obby(reader)
+            }
+            "wasm" => {
+                // Use Cursor for Wasm as well
+                let reader = Cursor::new(data);
+                FileInput::Wasm(reader)
+            }
+            _ => {
+                // Default to RawFile with Cursor
+                let reader = Cursor::new(data);
+                FileInput::RawFile(reader)
+            }
         };
 
         let mut visited = false;
@@ -182,7 +201,7 @@ async fn validate_minecraft_file(
                 )
             {
                 if validator.get_file_extensions().contains(&&*file_extension) {
-                    let result = validator.validate(file_input.clone()).map_err(|e| { ValidationError::from(e) })?;
+                    let result = validator.validate(file_input.clone()).map_err(ValidationError::from)?;
                     match result {
                         ValidationResult::PassWithPackDataAndFiles { .. } => {
                             saved_result = Some(result);
