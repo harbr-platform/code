@@ -15,7 +15,7 @@ export const useTags = () =>
       },
     ],
     loaderData: {
-      pluginLoaders: ["bukkit", "spigot", "paper", "purpur", "sponge", "folia"],
+      pluginLoaders: ["bukkit", "spigot", "paper", "purpur", "sponge", "folia",/*new*/ "obsidian"],
       pluginPlatformLoaders: ["bungeecord", "waterfall", "velocity"],
       allPluginLoaders: [
         "bukkit",
@@ -27,6 +27,8 @@ export const useTags = () =>
         "waterfall",
         "velocity",
         "folia",
+        // new
+        "obsidian",
       ],
       dataPackLoaders: [],
       modLoaders: [],
