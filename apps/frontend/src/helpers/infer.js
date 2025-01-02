@@ -540,9 +540,7 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
     const entries = archive.list_entries();
     if (entries.includes("plugin.json")) {
       const data = archive.extract_entry("plugin.json");
-      console.log(data);
       const textDecoder = new TextDecoder("utf-8");
-      console.log(textDecoder);
       const pluginJson = textDecoder.decode(data);
       return inferFunctionsObby["plugin.json"](pluginJson);
     }
