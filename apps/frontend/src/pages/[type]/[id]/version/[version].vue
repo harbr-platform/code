@@ -785,7 +785,7 @@ export default defineNuxtComponent({
         name: "",
         version_number: "",
         changelog: "",
-        date_published: Date.now(),
+        date_publishxed: Date.now(),
         downloads: 0,
         version_type: "release",
         files: [],

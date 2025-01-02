@@ -17,7 +17,7 @@ export const acceptFileFromProjectType = (projectType) => {
     case "mod":
       return ".jar,.zip,.litemod,application/java-archive,application/x-java-archive,application/zip";
     case "plugin":
-      return ".jar,.zip,application/java-archive,application/x-java-archive,application/zip";
+      return ".jar,.zip,.obby,application/java-archive,application/x-java-archive,application/zip,application/octet-stream";
     case "resourcepack":
       return ".zip,application/zip";
     case "shader":

@@ -534,8 +534,9 @@ export const inferVersionInfo = async function (rawFile, project, gameVersions) 
   const fileExtension = rawFile.name.split(".").pop();
   if (fileExtension === "obby") {
     const buffer = await rawFile.arrayBuffer();
+    let uint8Array = new Uint8Array(buffer);
     const wasm = await init();
-    const archive = await WasmObbyArchive(buffer);
+    const archive = new WasmObbyArchive(uint8Array);
     const entries = archive.list_entries();
     if (entries.includes("plugin.json")) {
       const data = archive.extract_entry("plugin.json");
