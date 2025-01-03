@@ -42,8 +42,8 @@
               v-for="project in row"
               :key="project.id"
               class="project button-animation"
-              :to="`/${project.project_type}/${project.slug ? project.slug : project.id}`"
-            >
+              :to="`/plugin/${project.slug ? project.slug : project.id}`"
+            > <!--:to="`/${project.project_type}/${project.slug ? project.slug : project.id}`" temporarily hardcoded plugin -->
               <Avatar :src="project.icon_url" :alt="project.title" size="sm" loading="lazy" />
               <div class="project-info">
                 <span class="title">
