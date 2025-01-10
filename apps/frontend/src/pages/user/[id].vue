@@ -236,9 +236,9 @@
             <div v-for="badge in badges" :key="badge">
               <StaffBadge v-if="badge === 'staff'" class="h-14 w-14" />
               <ModBadge v-else-if="badge === 'mod'" class="h-14 w-14" />
-              <nuxt-link v-else-if="badge === 'plus'" to="/plus">
+              <!--<nuxt-link v-else-if="badge === 'plus'" to="/plus">
                 <PlusBadge class="h-14 w-14" />
-              </nuxt-link>
+              </nuxt-link>-->
               <TenMClubBadge v-else-if="badge === '10m-club'" class="h-14 w-14" />
               <EarlyAdopterBadge v-else-if="badge === 'early-adopter'" class="h-14 w-14" />
               <AlphaTesterBadge v-else-if="badge === 'alpha-tester'" class="h-14 w-14" />

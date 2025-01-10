@@ -1,19 +1,19 @@
 <template>
   <div class="ad-parent relative mb-3 flex w-full justify-center rounded-2xl bg-bg-raised">
     <div class="flex max-h-[250px] min-h-[250px] min-w-[300px] max-w-[300px] flex-col gap-4 p-6">
-      <p class="m-0 text-2xl font-bold text-contrast">75% of ad revenue goes to creators</p>
-      <nuxt-link to="/plus" class="mt-auto items-center gap-1 text-purple hover:underline">
+      <p class="m-0 text-2xl font-bold text-contrast">We currently have no ads on our website</p>
+      <!--<nuxt-link to="/plus" class="mt-auto items-center gap-1 text-purple hover:underline">
         <span>
-          Support creators and Modrinth ad-free with
-          <span class="font-bold">Modrinth+</span>
+          Support creators and Harbr ad-free with
+          <span class="font-bold">Harbr+</span>
         </span>
         <ChevronRightIcon class="relative top-[3px] h-5 w-5" />
-      </nuxt-link>
+      </nuxt-link>-->
     </div>
     <div
       class="absolute top-0 flex items-center justify-center overflow-hidden rounded-2xl bg-bg-raised"
     >
-      <div id="modrinth-rail-1" />
+      <div id="harbr-rail-1" />
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import { ChevronRightIcon } from "@modrinth/assets";
 
 useHead({
   script: [
-    {
+    /*{
       // Clean.io
       src: "https://cadmus.script.ac/d14pdm1b7fi5kh/script.js",
     },
@@ -39,7 +39,7 @@ useHead({
     {
       src: "/inmobi.js",
       async: true,
-    },
+    },*/
   ],
   link: [
     {
@@ -63,7 +63,7 @@ onMounted(() => {
   tude.cmd.push(function () {
     tude.refreshAdsViaDivMappings([
       {
-        divId: "modrinth-rail-1",
+        divId: "harbr-rail-1",
         baseDivId: "pb-slot-square-2",
         targeting: {
           location: "web",
