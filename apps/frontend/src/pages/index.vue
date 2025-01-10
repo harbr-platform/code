@@ -464,8 +464,7 @@
             </svg>
           </div>
           <h3>Build Your Ecosystem</h3>
-          <p>Harbr
-            Make your loader a hub for innovation by connecting with Harbr's community.
+          <p>Expand your loader's reach by connecting with Harbr's community.</p>
           </p>
         </div>
         <!--<div class="feature gradient-border">
