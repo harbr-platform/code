@@ -465,7 +465,6 @@
           </div>
           <h3>Build Your Ecosystem</h3>
           <p>Expand your loader's reach by connecting with Harbr's community.</p>
-          </p>
         </div>
         <!--<div class="feature gradient-border">
           <div class="icon gradient-border">
