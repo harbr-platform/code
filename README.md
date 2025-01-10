@@ -7,7 +7,7 @@
 
 ## Harbr Monorepo
 
-Welcome to the Harbr Monorepo, a fork of Modrinth, the primary codebase for the Harbr web interface and api. It contains ![Lines](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/harbr-platform/olympus/badge?logoColor=white&color=black&label=) lines of code and has ![Contributors](https://img.shields.io/github/contributors/harbr-platform/code?color=black&label=) contributors!
+Welcome to the Harbr Monorepo, a fork of Modrinth, the primary codebase for the Harbr web interface and api. It contains ![Lines](https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/harbr-platform/code/badge?logoColor=white&color=black&label=) lines of code and has ![Contributors](https://img.shields.io/github/contributors/harbr-platform/code?color=black&label=) contributors!
 
 If you're not a developer and you've stumbled upon this repository, you can access the web interface on the [Harbr website](https://harbr.dev).
 
