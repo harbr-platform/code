@@ -10,6 +10,11 @@ export const useTags = () =>
     projectTypes: [
       {
         actual: "mod",
+        id: "mod",
+        display: "mod",
+      },
+      {
+        actual: "mod",
         id: "plugin",
         display: "plugin",
       },

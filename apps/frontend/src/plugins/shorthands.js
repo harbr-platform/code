@@ -191,6 +191,7 @@ export const formatProjectType = (name) => {
   return capitalizeString(name);
 };
 
+// IMPORTANT PLACE FOR LOADERS
 export const formatCategory = (name) => {
   if (name === "modloader") {
     return "Risugami's ModLoader";
